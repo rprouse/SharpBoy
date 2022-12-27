@@ -361,28 +361,28 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0x80, new Opcode(0x80, "ADD A,B", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADD(_reg.B); },
         } ) },
         { 0x81, new Opcode(0x81, "ADD A,C", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADD(_reg.C); },
         } ) },
         { 0x82, new Opcode(0x82, "ADD A,D", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADD(_reg.D); },
         } ) },
         { 0x83, new Opcode(0x83, "ADD A,E", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADD(_reg.E); },
         } ) },
         { 0x84, new Opcode(0x84, "ADD A,H", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADD(_reg.H); },
         } ) },
         { 0x85, new Opcode(0x85, "ADD A,L", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADD(_reg.L); },
         } ) },
         { 0x86, new Opcode(0x86, "ADD A,(HL)", 1, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADD(_mmu[_reg.HL]); },
         } ) },
         { 0x87, new Opcode(0x87, "ADD A,A", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADD(_reg.A); },
         } ) },
         { 0x88, new Opcode(0x88, "ADC A,B", 1, 1, new Tick[] {
             () => { ADC(_reg.B); },
@@ -553,7 +553,7 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0xC6, new Opcode(0xC6, "ADD A,u8", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADD(_mmu[_reg.PC++]); },
         } ) },
         { 0xCE, new Opcode(0xCE, "ADC A,u8", 2, 2, new Tick[] {
             () => { ADC(_mmu[_reg.PC++]); },

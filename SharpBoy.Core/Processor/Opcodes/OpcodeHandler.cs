@@ -38,4 +38,14 @@ public partial class OpcodeHandler
         _reg.FlagC = result > 0xFF;
         _reg.A = (byte)result;
     }
+
+    private void ADD(byte value)
+    {
+        int result = _reg.A + value;
+        _reg.FlagZ = result == 0;
+        _reg.FlagN = false;
+        _reg.FlagH = (_reg.A & 0b_0000_1111) + (value & 0b_0000_1111) > 0b_0000_1111;
+        _reg.FlagC = result > 0xFF;
+        _reg.A = (byte)result;
+    }
 }
