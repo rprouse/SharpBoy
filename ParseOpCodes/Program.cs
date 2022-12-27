@@ -1,48 +1,68 @@
+using System.Text;
 using System.Text.Json;
 
 string fileName = @"C:\Src\Retro\GameBoy\dmgops.json";
 string jsonString = File.ReadAllText(fileName);
 var opcodes = JsonSerializer.Deserialize<Opcodes>(jsonString)!;
 
-foreach( var opcode in opcodes.Unprefixed)
+byte value = 0x00;
+foreach (var oc in opcodes.Unprefixed)
 {
-    Console.WriteLine($"{opcode.Group}: {opcode.Name}");
+    oc.Value = value++;
+    if (value == 0xCB) value++;
+    if (oc.TCyclesNoBranch != oc.TCyclesBranch)
+        Console.WriteLine($"Opcode {oc.Value} has different cycles {oc.TCyclesNoBranch} != {oc.TCyclesBranch}");
+}
+value = 0x00;
+foreach (var oc in opcodes.CBPrefixed)
+{
+    oc.Value = value++;
+    if (oc.TCyclesNoBranch != oc.TCyclesBranch)
+        Console.WriteLine($"CB Opcode {oc.Value} has different cycles {oc.TCyclesNoBranch} != {oc.TCyclesBranch}");
 }
 
-public class Opcodes
-{
-    public Opcode[] Unprefixed { get; set; }
-    public Opcode[] CBPrefixed { get; set; }
-}
+const string dir = @"..\..\..\..\SharpBoy.Core\Processor\Opcodes";
 
-public class Opcode
-{
-    public string Name { get; set; }
-    public string Group { get; set; }
-    public int TCyclesBranch { get; set; }
-    public int TCyclesNoBranch { get; set; }
-    public int Length { get; set; }
-    public Flags Flags { get; set; }
-    public Timingnobranch[] TimingNoBranch { get; set; }
-    public Timingbranch[] TimingBranch { get; set; }
-}
+var sb = new StringBuilder();
+sb.AppendLine("namespace SharpBoy.Core.Processor.Opcodes;\r\n");
+sb.AppendLine("public partial class OpcodeHandler\r\n{");
+sb.AppendLine("    private Dictionary<uint8, Opcode> Initialize() => new Dictionary<uint8, Opcode>\r\n    {");
 
-public class Flags
+var groups = opcodes.Unprefixed.Select(o => o.Group).Distinct().OrderBy(g => g);
+foreach (var group in groups)
 {
-    public string Z { get; set; }
-    public string N { get; set; }
-    public string H { get; set; }
-    public string C { get; set; }
+    sb.AppendLine($"        // {group}");
+    foreach (var oc in opcodes.Unprefixed.Where(o => o.Group == group))
+    {
+        sb.AppendLine($"        {{ 0x{oc.Value:X2}, new Opcode(0x{oc.Value:X2}, \"{oc.Name}\", {oc.Length}, {oc.TCyclesNoBranch}, new Tick[] {{");
+        for (int i = 1; i < oc.TCyclesNoBranch; i++)
+            sb.AppendLine( "            () => { },");
+        sb.AppendLine( "        } ) },");
+    }
+    sb.AppendLine();
 }
+sb.AppendLine("    };\r\n}\r\n");
 
-public class Timingnobranch
-{
-    public string Type { get; set; }
-    public string Comment { get; set; }
-}
+File.WriteAllText(Path.Combine(dir, "OpcodeHandler.Initialize.Gen.cs"), sb.ToString());
 
-public class Timingbranch
+sb.Clear();
+sb.AppendLine("namespace SharpBoy.Core.Processor.Opcodes;\r\n");
+sb.AppendLine("public partial class CbOpcodeHandler\r\n{");
+sb.AppendLine("    private Dictionary<uint8, Opcode> Initialize() => new Dictionary<uint8, Opcode>\r\n    {");
+
+groups = opcodes.CBPrefixed.Select(o => o.Group).Distinct().OrderBy(g => g);
+foreach (var group in groups)
 {
-    public string Type { get; set; }
-    public string Comment { get; set; }
+    sb.AppendLine($"        // {group}");
+    foreach (var oc in opcodes.CBPrefixed.Where(o => o.Group == group))
+    {
+        sb.AppendLine($"        {{ 0x{oc.Value:X2}, new Opcode(0x{oc.Value:X2}, \"{oc.Name}\", {oc.Length}, {oc.TCyclesNoBranch}, new Tick[] {{");
+        for (int i = 1; i < oc.TCyclesNoBranch; i++)
+            sb.AppendLine("            () => { },");
+        sb.AppendLine("        } ) },");
+    }
+    sb.AppendLine();
 }
+sb.AppendLine("    };\r\n}\r\n");
+
+File.WriteAllText(Path.Combine(dir, "CbOpcodeHandler.Initialize.Gen.cs"), sb.ToString());
