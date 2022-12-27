@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParseOpCodes", "ParseOpCodes\ParseOpCodes.csproj", "{96472CD1-E700-420E-92A4-2ACCE0E5BFB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParseOpCodes", "ParseOpCodes\ParseOpCodes.csproj", "{96472CD1-E700-420E-92A4-2ACCE0E5BFB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpBoy.Core", "SharpBoy.Core\SharpBoy.Core.csproj", "{B8983A47-37D0-4729-B132-45FFD01FF736}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpBoy.Tests", "SharpBoy.Tests\SharpBoy.Tests.csproj", "{557919FB-BE46-4BE5-9477-9AC1BD07DB24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{96472CD1-E700-420E-92A4-2ACCE0E5BFB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96472CD1-E700-420E-92A4-2ACCE0E5BFB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96472CD1-E700-420E-92A4-2ACCE0E5BFB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8983A47-37D0-4729-B132-45FFD01FF736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8983A47-37D0-4729-B132-45FFD01FF736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8983A47-37D0-4729-B132-45FFD01FF736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8983A47-37D0-4729-B132-45FFD01FF736}.Release|Any CPU.Build.0 = Release|Any CPU
+		{557919FB-BE46-4BE5-9477-9AC1BD07DB24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{557919FB-BE46-4BE5-9477-9AC1BD07DB24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{557919FB-BE46-4BE5-9477-9AC1BD07DB24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{557919FB-BE46-4BE5-9477-9AC1BD07DB24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
