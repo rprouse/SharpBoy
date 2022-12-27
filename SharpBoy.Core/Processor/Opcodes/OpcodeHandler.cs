@@ -27,4 +27,15 @@ public partial class OpcodeHandler
         _int = interupts;
         _opcodes = Initialize();
     }
+
+    private void ADC(byte value)
+    {
+        int carry = _reg.FlagC ? 1 : 0;
+        int result = _reg.A + value + carry;
+        _reg.FlagZ = result == 0;
+        _reg.FlagN = false;
+        _reg.FlagH = (_reg.A & 0b_0000_1111) + (value & 0b_0000_1111) + carry > 0b_0000_1111;
+        _reg.FlagC = result > 0xFF;
+        _reg.A = (byte)result;
+    }
 }

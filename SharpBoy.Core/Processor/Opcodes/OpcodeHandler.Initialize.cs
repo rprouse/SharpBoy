@@ -188,7 +188,8 @@ public partial class OpcodeHandler
 
         // x16/alu
         { 0x03, new Opcode(0x03, "INC BC", 1, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            // Todo: OAM Bug
+            () => { _reg.BC++; },
         } ) },
         { 0x09, new Opcode(0x09, "ADD HL,BC", 1, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
@@ -384,28 +385,28 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0x88, new Opcode(0x88, "ADC A,B", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADC(_reg.B); },
         } ) },
         { 0x89, new Opcode(0x89, "ADC A,C", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADC(_reg.C); },
         } ) },
         { 0x8A, new Opcode(0x8A, "ADC A,D", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADC(_reg.D); },
         } ) },
         { 0x8B, new Opcode(0x8B, "ADC A,E", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADC(_reg.E); },
         } ) },
         { 0x8C, new Opcode(0x8C, "ADC A,H", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADC(_reg.H); },
         } ) },
         { 0x8D, new Opcode(0x8D, "ADC A,L", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADC(_reg.L); },
         } ) },
         { 0x8E, new Opcode(0x8E, "ADC A,(HL)", 1, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADC(_mmu[_reg.HL]); },
         } ) },
         { 0x8F, new Opcode(0x8F, "ADC A,A", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADC(_reg.A); },
         } ) },
         { 0x90, new Opcode(0x90, "SUB A,B", 1, 1, new Tick[] {
             () => { throw new NotImplementedException(); },
@@ -555,7 +556,7 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0xCE, new Opcode(0xCE, "ADC A,u8", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADC(_mmu[_reg.PC++]); },
         } ) },
         { 0xD6, new Opcode(0xD6, "SUB A,u8", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
