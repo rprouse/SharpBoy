@@ -2,7 +2,7 @@ namespace SharpBoy.Core.Processor.Opcodes;
 
 public partial class OpcodeHandler
 {
-    private Dictionary<uint8, Opcode> Initialize() => new Dictionary<uint8, Opcode>
+    private Dictionary<byte, Opcode> Initialize() => new Dictionary<byte, Opcode>
     {
         // control/br
         { 0x18, new Opcode(0x18, "JR i8", 2, 3, new Tick[] {
@@ -133,7 +133,7 @@ public partial class OpcodeHandler
 
         // control/misc
         { 0x00, new Opcode(0x00, "NOP", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { },
         } ) },
         { 0x10, new Opcode(0x10, "STOP", 1, 1, new Tick[] {
             () => { throw new NotImplementedException(); },

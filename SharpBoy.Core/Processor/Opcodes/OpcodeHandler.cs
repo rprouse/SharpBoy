@@ -10,7 +10,14 @@ public partial class OpcodeHandler
     private readonly VPU _vpu;
     private readonly Interupts _int;
 
-    private Dictionary<uint8, Opcode> _opcodes;
+    // Some variables to carry values between ticks
+    private byte _lsb;
+    private byte _msb;
+    private byte _operand;
+    private word _address;
+    private word _result;
+
+    private Dictionary<byte, Opcode> _opcodes;
 
     public OpcodeHandler(Registers registers, MMU mmu, VPU vpu, Interupts interupts)
     {

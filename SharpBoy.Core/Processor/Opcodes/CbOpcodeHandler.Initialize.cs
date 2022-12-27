@@ -2,7 +2,7 @@ namespace SharpBoy.Core.Processor.Opcodes;
 
 public partial class CbOpcodeHandler
 {
-    private Dictionary<uint8, Opcode> Initialize() => new Dictionary<uint8, Opcode>
+    private Dictionary<byte, Opcode> Initialize() => new Dictionary<byte, Opcode>
     {
         // x8/rsb
         { 0x00, new Opcode(0x00, "RLC B", 2, 2, new Tick[] {

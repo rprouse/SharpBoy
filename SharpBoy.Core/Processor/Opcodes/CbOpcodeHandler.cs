@@ -10,7 +10,7 @@ public partial class CbOpcodeHandler
     private readonly VPU _vpu;
     private readonly Interupts _int;
 
-    private Dictionary<uint8, Opcode> _opcodes;
+    private Dictionary<byte, Opcode> _opcodes;
 
     public CbOpcodeHandler(Registers registers, MMU mmu, VPU vpu, Interupts interupts)
     {

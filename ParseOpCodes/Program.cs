@@ -29,7 +29,7 @@ static void GenerateHandler(IEnumerable<Opcode> opcodes, string classname)
     var sb = new StringBuilder();
     sb.AppendLine("namespace SharpBoy.Core.Processor.Opcodes;\r\n");
     sb.AppendLine($"public partial class {classname}\r\n{{");
-    sb.AppendLine("    private Dictionary<uint8, Opcode> Initialize() => new Dictionary<uint8, Opcode>\r\n    {");
+    sb.AppendLine("    private Dictionary<byte, Opcode> Initialize() => new Dictionary<byte, Opcode>\r\n    {");
 
     var groups = opcodes.Select(o => o.Group).Distinct().OrderBy(g => g);
     foreach (var group in groups)
