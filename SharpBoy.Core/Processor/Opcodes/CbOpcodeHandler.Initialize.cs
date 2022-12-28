@@ -23,7 +23,7 @@ public partial class CbOpcodeHandler
         { 0x05, new Opcode(0x05, "RLC L", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x06, new Opcode(0x06, "RLC (HL)", 2, 4, new Tick[] {
+        { 0x06, new Opcode(0x06, "RLC [HL]", 2, 4, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
@@ -49,7 +49,7 @@ public partial class CbOpcodeHandler
         { 0x0D, new Opcode(0x0D, "RRC L", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x0E, new Opcode(0x0E, "RRC (HL)", 2, 4, new Tick[] {
+        { 0x0E, new Opcode(0x0E, "RRC [HL]", 2, 4, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
@@ -75,7 +75,7 @@ public partial class CbOpcodeHandler
         { 0x15, new Opcode(0x15, "RL L", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x16, new Opcode(0x16, "RL (HL)", 2, 4, new Tick[] {
+        { 0x16, new Opcode(0x16, "RL [HL]", 2, 4, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
@@ -101,7 +101,7 @@ public partial class CbOpcodeHandler
         { 0x1D, new Opcode(0x1D, "RR L", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x1E, new Opcode(0x1E, "RR (HL)", 2, 4, new Tick[] {
+        { 0x1E, new Opcode(0x1E, "RR [HL]", 2, 4, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
@@ -127,7 +127,7 @@ public partial class CbOpcodeHandler
         { 0x25, new Opcode(0x25, "SLA L", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x26, new Opcode(0x26, "SLA (HL)", 2, 4, new Tick[] {
+        { 0x26, new Opcode(0x26, "SLA [HL]", 2, 4, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
@@ -153,7 +153,7 @@ public partial class CbOpcodeHandler
         { 0x2D, new Opcode(0x2D, "SRA L", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x2E, new Opcode(0x2E, "SRA (HL)", 2, 4, new Tick[] {
+        { 0x2E, new Opcode(0x2E, "SRA [HL]", 2, 4, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
@@ -179,7 +179,7 @@ public partial class CbOpcodeHandler
         { 0x35, new Opcode(0x35, "SWAP L", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x36, new Opcode(0x36, "SWAP (HL)", 2, 4, new Tick[] {
+        { 0x36, new Opcode(0x36, "SWAP [HL]", 2, 4, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
@@ -205,7 +205,7 @@ public partial class CbOpcodeHandler
         { 0x3D, new Opcode(0x3D, "SRL L", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x3E, new Opcode(0x3E, "SRL (HL)", 2, 4, new Tick[] {
+        { 0x3E, new Opcode(0x3E, "SRL [HL]", 2, 4, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
@@ -231,7 +231,7 @@ public partial class CbOpcodeHandler
         { 0x45, new Opcode(0x45, "BIT 0,L", 2, 2, new Tick[] {
             () => { BIT(0, _reg.L); },
         } ) },
-        { 0x46, new Opcode(0x46, "BIT 0,(HL)", 2, 3, new Tick[] {
+        { 0x46, new Opcode(0x46, "BIT 0,[HL]", 2, 3, new Tick[] {
             () => { BIT(0, _mmu[_reg.HL]); },
             () => { },
         } ) },
@@ -256,7 +256,7 @@ public partial class CbOpcodeHandler
         { 0x4D, new Opcode(0x4D, "BIT 1,L", 2, 2, new Tick[] {
             () => { BIT(1, _reg.L); },
         } ) },
-        { 0x4E, new Opcode(0x4E, "BIT 1,(HL)", 2, 3, new Tick[] {
+        { 0x4E, new Opcode(0x4E, "BIT 1,[HL]", 2, 3, new Tick[] {
             () => { BIT(1, _mmu[_reg.HL]); },
             () => { },
         } ) },
@@ -281,7 +281,7 @@ public partial class CbOpcodeHandler
         { 0x55, new Opcode(0x55, "BIT 2,L", 2, 2, new Tick[] {
             () => { BIT(2, _reg.L); },
         } ) },
-        { 0x56, new Opcode(0x56, "BIT 2,(HL)", 2, 3, new Tick[] {
+        { 0x56, new Opcode(0x56, "BIT 2,[HL]", 2, 3, new Tick[] {
             () => { BIT(2, _mmu[_reg.HL]); },
             () => { },
         } ) },
@@ -306,7 +306,7 @@ public partial class CbOpcodeHandler
         { 0x5D, new Opcode(0x5D, "BIT 3,L", 2, 2, new Tick[] {
             () => { BIT(3, _reg.L); },
         } ) },
-        { 0x5E, new Opcode(0x5E, "BIT 3,(HL)", 2, 3, new Tick[] {
+        { 0x5E, new Opcode(0x5E, "BIT 3,[HL]", 2, 3, new Tick[] {
             () => { BIT(3, _mmu[_reg.HL]); },
             () => { },
         } ) },
@@ -331,7 +331,7 @@ public partial class CbOpcodeHandler
         { 0x65, new Opcode(0x65, "BIT 4,L", 2, 2, new Tick[] {
             () => { BIT(4, _reg.L); },
         } ) },
-        { 0x66, new Opcode(0x66, "BIT 4,(HL)", 2, 3, new Tick[] {
+        { 0x66, new Opcode(0x66, "BIT 4,[HL]", 2, 3, new Tick[] {
             () => { BIT(4, _mmu[_reg.HL]); },
             () => { },
         } ) },
@@ -356,7 +356,7 @@ public partial class CbOpcodeHandler
         { 0x6D, new Opcode(0x6D, "BIT 5,L", 2, 2, new Tick[] {
             () => { BIT(5, _reg.L); },
         } ) },
-        { 0x6E, new Opcode(0x6E, "BIT 5,(HL)", 2, 3, new Tick[] {
+        { 0x6E, new Opcode(0x6E, "BIT 5,[HL]", 2, 3, new Tick[] {
             () => { BIT(5, _mmu[_reg.HL]); },
             () => { },
         } ) },
@@ -381,7 +381,7 @@ public partial class CbOpcodeHandler
         { 0x75, new Opcode(0x75, "BIT 6,L", 2, 2, new Tick[] {
             () => { BIT(6, _reg.L); },
         } ) },
-        { 0x76, new Opcode(0x76, "BIT 6,(HL)", 2, 3, new Tick[] {
+        { 0x76, new Opcode(0x76, "BIT 6,[HL]", 2, 3, new Tick[] {
             () => { BIT(6, _mmu[_reg.HL]); },
         } ) },
         { 0x77, new Opcode(0x77, "BIT 6,A", 2, 2, new Tick[] {
@@ -405,7 +405,7 @@ public partial class CbOpcodeHandler
         { 0x7D, new Opcode(0x7D, "BIT 7,L", 2, 2, new Tick[] {
             () => { BIT(7, _reg.L); },
         } ) },
-        { 0x7E, new Opcode(0x7E, "BIT 7,(HL)", 2, 3, new Tick[] {
+        { 0x7E, new Opcode(0x7E, "BIT 7,[HL]", 2, 3, new Tick[] {
             () => { BIT(7, _mmu[_reg.HL]); },
             () => { },
         } ) },
@@ -413,238 +413,238 @@ public partial class CbOpcodeHandler
             () => { BIT(7, _reg.A); },
         } ) },
         { 0x80, new Opcode(0x80, "RES 0,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = RES(0, _reg.B); },
         } ) },
         { 0x81, new Opcode(0x81, "RES 0,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = RES(0, _reg.C); },
         } ) },
         { 0x82, new Opcode(0x82, "RES 0,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = RES(0, _reg.D); },
         } ) },
         { 0x83, new Opcode(0x83, "RES 0,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = RES(0, _reg.E); },
         } ) },
         { 0x84, new Opcode(0x84, "RES 0,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = RES(0, _reg.H); },
         } ) },
         { 0x85, new Opcode(0x85, "RES 0,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = RES(0, _reg.L); },
         } ) },
-        { 0x86, new Opcode(0x86, "RES 0,(HL)", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+        { 0x86, new Opcode(0x86, "RES 0,[HL]", 2, 4, new Tick[] {
+            () => { },
+            () => { _result = RES(0, _mmu[_reg.HL]); },
+            () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0x87, new Opcode(0x87, "RES 0,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = RES(0, _reg.A); },
         } ) },
         { 0x88, new Opcode(0x88, "RES 1,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = RES(1, _reg.B); },
         } ) },
         { 0x89, new Opcode(0x89, "RES 1,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = RES(1, _reg.C); },
         } ) },
         { 0x8A, new Opcode(0x8A, "RES 1,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = RES(1, _reg.D); },
         } ) },
         { 0x8B, new Opcode(0x8B, "RES 1,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = RES(1, _reg.E); },
         } ) },
         { 0x8C, new Opcode(0x8C, "RES 1,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = RES(1, _reg.H); },
         } ) },
         { 0x8D, new Opcode(0x8D, "RES 1,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = RES(1, _reg.L); },
         } ) },
-        { 0x8E, new Opcode(0x8E, "RES 1,(HL)", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+        { 0x8E, new Opcode(0x8E, "RES 1,[HL]", 2, 4, new Tick[] {
+            () => { },
+            () => { _result = RES(1, _mmu[_reg.HL]); },
+            () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0x8F, new Opcode(0x8F, "RES 1,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = RES(1, _reg.A); },
         } ) },
         { 0x90, new Opcode(0x90, "RES 2,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = RES(2, _reg.B); },
         } ) },
         { 0x91, new Opcode(0x91, "RES 2,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = RES(2, _reg.C); },
         } ) },
         { 0x92, new Opcode(0x92, "RES 2,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = RES(2, _reg.D); },
         } ) },
         { 0x93, new Opcode(0x93, "RES 2,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = RES(2, _reg.E); },
         } ) },
         { 0x94, new Opcode(0x94, "RES 2,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = RES(2, _reg.H); },
         } ) },
         { 0x95, new Opcode(0x95, "RES 2,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = RES(2, _reg.L); },
         } ) },
-        { 0x96, new Opcode(0x96, "RES 2,(HL)", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+        { 0x96, new Opcode(0x96, "RES 2,[HL]", 2, 4, new Tick[] {
+            () => { },
+            () => { _result = RES(2, _mmu[_reg.HL]); },
+            () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0x97, new Opcode(0x97, "RES 2,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = RES(2, _reg.A); },
         } ) },
         { 0x98, new Opcode(0x98, "RES 3,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = RES(3, _reg.B); },
         } ) },
         { 0x99, new Opcode(0x99, "RES 3,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = RES(3, _reg.C); },
         } ) },
         { 0x9A, new Opcode(0x9A, "RES 3,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = RES(3, _reg.D); },
         } ) },
         { 0x9B, new Opcode(0x9B, "RES 3,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = RES(3, _reg.E); },
         } ) },
         { 0x9C, new Opcode(0x9C, "RES 3,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = RES(3, _reg.H); },
         } ) },
         { 0x9D, new Opcode(0x9D, "RES 3,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = RES(3, _reg.L); },
         } ) },
-        { 0x9E, new Opcode(0x9E, "RES 3,(HL)", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+        { 0x9E, new Opcode(0x9E, "RES 3,[HL]", 2, 4, new Tick[] {
+            () => { },
+            () => { _result = RES(3, _mmu[_reg.HL]); },
+            () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0x9F, new Opcode(0x9F, "RES 3,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = RES(3, _reg.A); },
         } ) },
         { 0xA0, new Opcode(0xA0, "RES 4,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = RES(4, _reg.B); },
         } ) },
         { 0xA1, new Opcode(0xA1, "RES 4,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = RES(4, _reg.C); },
         } ) },
         { 0xA2, new Opcode(0xA2, "RES 4,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = RES(4, _reg.D); },
         } ) },
         { 0xA3, new Opcode(0xA3, "RES 4,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = RES(4, _reg.E); },
         } ) },
         { 0xA4, new Opcode(0xA4, "RES 4,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = RES(4, _reg.H); },
         } ) },
         { 0xA5, new Opcode(0xA5, "RES 4,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = RES(4, _reg.L); },
         } ) },
-        { 0xA6, new Opcode(0xA6, "RES 4,(HL)", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+        { 0xA6, new Opcode(0xA6, "RES 4,[HL]", 2, 4, new Tick[] {
+            () => { },
+            () => { _result = RES(4, _mmu[_reg.HL]); },
+            () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xA7, new Opcode(0xA7, "RES 4,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = RES(4, _reg.A); },
         } ) },
         { 0xA8, new Opcode(0xA8, "RES 5,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = RES(5, _reg.B); },
         } ) },
         { 0xA9, new Opcode(0xA9, "RES 5,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = RES(5, _reg.C); },
         } ) },
         { 0xAA, new Opcode(0xAA, "RES 5,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = RES(5, _reg.D); },
         } ) },
         { 0xAB, new Opcode(0xAB, "RES 5,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = RES(5, _reg.E); },
         } ) },
         { 0xAC, new Opcode(0xAC, "RES 5,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = RES(5, _reg.H); },
         } ) },
         { 0xAD, new Opcode(0xAD, "RES 5,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = RES(5, _reg.L); },
         } ) },
-        { 0xAE, new Opcode(0xAE, "RES 5,(HL)", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+        { 0xAE, new Opcode(0xAE, "RES 5,[HL]", 2, 4, new Tick[] {
+            () => { },
+            () => { _result = RES(5, _mmu[_reg.HL]); },
+            () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xAF, new Opcode(0xAF, "RES 5,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = RES(5, _reg.A); },
         } ) },
         { 0xB0, new Opcode(0xB0, "RES 6,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = RES(6, _reg.B); },
         } ) },
         { 0xB1, new Opcode(0xB1, "RES 6,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = RES(6, _reg.C); },
         } ) },
         { 0xB2, new Opcode(0xB2, "RES 6,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = RES(6, _reg.D); },
         } ) },
         { 0xB3, new Opcode(0xB3, "RES 6,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = RES(6, _reg.E); },
         } ) },
         { 0xB4, new Opcode(0xB4, "RES 6,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = RES(6, _reg.H); },
         } ) },
         { 0xB5, new Opcode(0xB5, "RES 6,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = RES(6, _reg.L); },
         } ) },
-        { 0xB6, new Opcode(0xB6, "RES 6,(HL)", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+        { 0xB6, new Opcode(0xB6, "RES 6,[HL]", 2, 4, new Tick[] {
+            () => { },
+            () => { _result = RES(6, _mmu[_reg.HL]); },
+            () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xB7, new Opcode(0xB7, "RES 6,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = RES(6, _reg.A); },
         } ) },
         { 0xB8, new Opcode(0xB8, "RES 7,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = RES(7, _reg.B); },
         } ) },
         { 0xB9, new Opcode(0xB9, "RES 7,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = RES(7, _reg.C); },
         } ) },
         { 0xBA, new Opcode(0xBA, "RES 7,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = RES(7, _reg.D); },
         } ) },
         { 0xBB, new Opcode(0xBB, "RES 7,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = RES(7, _reg.E); },
         } ) },
         { 0xBC, new Opcode(0xBC, "RES 7,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = RES(7, _reg.H); },
         } ) },
         { 0xBD, new Opcode(0xBD, "RES 7,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = RES(7, _reg.L); },
         } ) },
-        { 0xBE, new Opcode(0xBE, "RES 7,(HL)", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+        { 0xBE, new Opcode(0xBE, "RES 7,[HL]", 2, 4, new Tick[] {
+            () => { },
+            () => { _result = RES(7, _mmu[_reg.HL]); },
+            () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xBF, new Opcode(0xBF, "RES 7,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = RES(7, _reg.A); },
         } ) },
         { 0xC0, new Opcode(0xC0, "SET 0,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = SET(0, _reg.B); },
         } ) },
         { 0xC1, new Opcode(0xC1, "SET 0,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = SET(0, _reg.C); },
         } ) },
         { 0xC2, new Opcode(0xC2, "SET 0,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = SET(0, _reg.D); },
         } ) },
         { 0xC3, new Opcode(0xC3, "SET 0,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = SET(0, _reg.E); },
         } ) },
         { 0xC4, new Opcode(0xC4, "SET 0,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = SET(0, _reg.H); },
         } ) },
         { 0xC5, new Opcode(0xC5, "SET 0,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = SET(0, _reg.L); },
         } ) },
-        { 0xC6, new Opcode(0xC6, "SET 0,(HL)", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+        { 0xC6, new Opcode(0xC6, "SET 0,[HL]", 2, 4, new Tick[] {
+            () => { },
+            () => { _result = SET(0, _mmu[_reg.HL]); },
+            () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xC7, new Opcode(0xC7, "SET 0,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = SET(0, _reg.A); },
         } ) },
         { 0xC8, new Opcode(0xC8, "SET 1,B", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
@@ -664,10 +664,10 @@ public partial class CbOpcodeHandler
         { 0xCD, new Opcode(0xCD, "SET 1,L", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xCE, new Opcode(0xCE, "SET 1,(HL)", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+        { 0xCE, new Opcode(0xCE, "SET 1,[HL]", 2, 4, new Tick[] {
+            () => { },
+            () => { _result = SET(1, _mmu[_reg.HL]); },
+            () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xCF, new Opcode(0xCF, "SET 1,A", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
@@ -690,10 +690,10 @@ public partial class CbOpcodeHandler
         { 0xD5, new Opcode(0xD5, "SET 2,L", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xD6, new Opcode(0xD6, "SET 2,(HL)", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+        { 0xD6, new Opcode(0xD6, "SET 2,[HL]", 2, 4, new Tick[] {
+            () => { },
+            () => { _result = SET(2, _mmu[_reg.HL]); },
+            () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xD7, new Opcode(0xD7, "SET 2,A", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
@@ -716,10 +716,10 @@ public partial class CbOpcodeHandler
         { 0xDD, new Opcode(0xDD, "SET 3,L", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xDE, new Opcode(0xDE, "SET 3,(HL)", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+        { 0xDE, new Opcode(0xDE, "SET 3,[HL]", 2, 4, new Tick[] {
+            () => { },
+            () => { _result = SET(3, _mmu[_reg.HL]); },
+            () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xDF, new Opcode(0xDF, "SET 3,A", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
@@ -742,10 +742,10 @@ public partial class CbOpcodeHandler
         { 0xE5, new Opcode(0xE5, "SET 4,L", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xE6, new Opcode(0xE6, "SET 4,(HL)", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+        { 0xE6, new Opcode(0xE6, "SET 4,[HL]", 2, 4, new Tick[] {
+            () => { },
+            () => { _result = SET(4, _mmu[_reg.HL]); },
+            () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xE7, new Opcode(0xE7, "SET 4,A", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
@@ -768,10 +768,10 @@ public partial class CbOpcodeHandler
         { 0xED, new Opcode(0xED, "SET 5,L", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xEE, new Opcode(0xEE, "SET 5,(HL)", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+        { 0xEE, new Opcode(0xEE, "SET 5,[HL]", 2, 4, new Tick[] {
+            () => { },
+            () => { _result = SET(5, _mmu[_reg.HL]); },
+            () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xEF, new Opcode(0xEF, "SET 5,A", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
@@ -794,10 +794,10 @@ public partial class CbOpcodeHandler
         { 0xF5, new Opcode(0xF5, "SET 6,L", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xF6, new Opcode(0xF6, "SET 6,(HL)", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+        { 0xF6, new Opcode(0xF6, "SET 6,[HL]", 2, 4, new Tick[] {
+            () => { },
+            () => { _result = SET(6, _mmu[_reg.HL]); },
+            () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xF7, new Opcode(0xF7, "SET 6,A", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
@@ -820,10 +820,10 @@ public partial class CbOpcodeHandler
         { 0xFD, new Opcode(0xFD, "SET 7,L", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xFE, new Opcode(0xFE, "SET 7,(HL)", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+        { 0xFE, new Opcode(0xFE, "SET 7,[HL]", 2, 4, new Tick[] {
+            () => { },
+            () => { _result = SET(7, _mmu[_reg.HL]); },
+            () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xFF, new Opcode(0xFF, "SET 7,A", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },

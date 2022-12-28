@@ -12,6 +12,8 @@ public partial class CbOpcodeHandler
 
     private Dictionary<byte, Opcode> _opcodes;
 
+    private byte _result;
+
     public CbOpcodeHandler(Registers registers, MMU mmu, VPU vpu, Interupts interupts)
     {
         _reg = registers;
@@ -27,4 +29,12 @@ public partial class CbOpcodeHandler
         _reg.FlagN = false;
         _reg.FlagH = true;
     }
+    
+    // Reset bit in value
+    private byte RES(int bit, byte value) =>
+        (byte)(value & ~(1 << bit));
+
+    // Set bit in value
+    private byte SET(int bit, byte value) =>
+        (byte)(value | (1 << bit));
 }
