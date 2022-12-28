@@ -16,6 +16,7 @@ public partial class OpcodeHandler
     private byte _operand;
     private word _address;
     private word _result;
+    private bool _stop;
 
     private Dictionary<byte, Opcode> _opcodes;
 

@@ -36,8 +36,11 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0xC4, new Opcode(0xC4, "CALL NZ,u16", 3, 3, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { _lsb = _mmu[_reg.PC++]; },
+            () => { _msb = _mmu[_reg.PC++]; _stop = _reg.FlagZ; },
+            () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Msb(); },
+            () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Lsb(); },
+            () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
         { 0xC7, new Opcode(0xC7, "RST 00h", 1, 4, new Tick[] {
             () => { throw new NotImplementedException(); },
@@ -57,8 +60,11 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0xCC, new Opcode(0xCC, "CALL Z,u16", 3, 3, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { _lsb = _mmu[_reg.PC++]; },
+            () => { _msb = _mmu[_reg.PC++]; _stop = !_reg.FlagZ; },
+            () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Msb(); },
+            () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Lsb(); },
+            () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
         { 0xCD, new Opcode(0xCD, "CALL u16", 3, 6, new Tick[] {
             () => { _lsb = _mmu[_reg.PC++]; },
@@ -79,9 +85,12 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xD4, new Opcode(0xD4, "CALL NC,u16", 3, 3, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+        { 0xD4, new Opcode(0xD4, "CALL NC,u16", 3, 6, new Tick[] {
+            () => { _lsb = _mmu[_reg.PC++]; },
+            () => { _msb = _mmu[_reg.PC++]; _stop = _reg.FlagC; },
+            () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Msb(); },
+            () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Lsb(); },
+            () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
         { 0xD7, new Opcode(0xD7, "RST 10h", 1, 4, new Tick[] {
             () => { throw new NotImplementedException(); },
@@ -101,8 +110,11 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0xDC, new Opcode(0xDC, "CALL C,u16", 3, 3, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { _lsb = _mmu[_reg.PC++]; },
+            () => { _msb = _mmu[_reg.PC++]; _stop = !_reg.FlagC; },
+            () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Msb(); },
+            () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Lsb(); },
+            () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
         { 0xDF, new Opcode(0xDF, "RST 18h", 1, 4, new Tick[] {
             () => { throw new NotImplementedException(); },
