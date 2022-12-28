@@ -1,7 +1,6 @@
-using FluentAssertions;
 using SharpBoy.Core.Processor;
 
-namespace SharpBoy.Tests;
+namespace SharpBoy.Tests.Processor;
 
 public class TestRegisters
 {

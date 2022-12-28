@@ -1,3 +1,5 @@
+using SharpBoy.Core.Utilities;
+
 namespace SharpBoy.Core.Processor.Opcodes;
 
 public partial class OpcodeHandler
@@ -59,11 +61,11 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0xCD, new Opcode(0xCD, "CALL u16", 3, 6, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { _lsb = _mmu[_reg.PC++]; },
+            () => { _msb = _mmu[_reg.PC++]; },
+            () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Msb(); },
+            () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Lsb(); },
+            () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
         { 0xCF, new Opcode(0xCF, "RST 08h", 1, 4, new Tick[] {
             () => { throw new NotImplementedException(); },
@@ -225,7 +227,7 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0xE8, new Opcode(0xE8, "ADD SP,i8", 2, 4, new Tick[] {
-            () => { ADDSP(_mmu[_reg.SP++]); },
+            () => { ADDSP(_mmu[_reg.PC++]); },
             () => { },
             () => { },
         } ) },
@@ -565,7 +567,7 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0xE6, new Opcode(0xE6, "AND A,u8", 2, 2, new Tick[] {
-            () => { AND(_mmu[_reg.SP]); },
+            () => { AND(_mmu[_reg.PC]); },
         } ) },
         { 0xEE, new Opcode(0xEE, "XOR A,u8", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
