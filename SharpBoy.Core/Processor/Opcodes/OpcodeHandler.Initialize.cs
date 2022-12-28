@@ -50,11 +50,7 @@ public partial class OpcodeHandler
             () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Lsb(); },
             () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
-        { 0xC7, new Opcode(0xC7, "RST 00h", 1, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-        } ) },
+        { 0xC7, new Opcode(0xC7, "RST 00h", 1, 4, RST(0x00) ) },
         { 0xC8, new Opcode(0xC8, "RET Z", 1, 5, new Tick[] {
             () => { _stop = !_reg.FlagZ; },
             () => { _lsb = _mmu[_reg.SP++]; },
@@ -85,11 +81,7 @@ public partial class OpcodeHandler
             () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Lsb(); },
             () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
-        { 0xCF, new Opcode(0xCF, "RST 08h", 1, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-        } ) },
+        { 0xCF, new Opcode(0xCF, "RST 08h", 1, 4, RST(0x08) ) },
         { 0xD0, new Opcode(0xD0, "RET NC", 1, 5, new Tick[] {
             () => { _stop = _reg.FlagC; },
             () => { _lsb = _mmu[_reg.SP++]; },
@@ -108,11 +100,7 @@ public partial class OpcodeHandler
             () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Lsb(); },
             () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
-        { 0xD7, new Opcode(0xD7, "RST 10h", 1, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-        } ) },
+        { 0xD7, new Opcode(0xD7, "RST 10h", 1, 4, RST(0x10) ) },
         { 0xD8, new Opcode(0xD8, "RET C", 1, 5, new Tick[] {
             () => { _stop = !_reg.FlagC; },
             () => { _lsb = _mmu[_reg.SP++]; },
@@ -136,34 +124,14 @@ public partial class OpcodeHandler
             () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Lsb(); },
             () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
-        { 0xDF, new Opcode(0xDF, "RST 18h", 1, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-        } ) },
-        { 0xE7, new Opcode(0xE7, "RST 20h", 1, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-        } ) },
+        { 0xDF, new Opcode(0xDF, "RST 18h", 1, 4, RST(0x18) ) },
+        { 0xE7, new Opcode(0xE7, "RST 20h", 1, 4, RST(0x20) ) },
         { 0xE9, new Opcode(0xE9, "JP HL", 1, 1, new Tick[] {
             () => { _reg.PC = _mmu[_reg.HL]; },
         } ) },
-        { 0xEF, new Opcode(0xEF, "RST 28h", 1, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-        } ) },
-        { 0xF7, new Opcode(0xF7, "RST 30h", 1, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-        } ) },
-        { 0xFF, new Opcode(0xFF, "RST 38h", 1, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-        } ) },
+        { 0xEF, new Opcode(0xEF, "RST 28h", 1, 4, RST(0x28) ) },
+        { 0xF7, new Opcode(0xF7, "RST 30h", 1, 4, RST(0x30) ) },
+        { 0xFF, new Opcode(0xFF, "RST 38h", 1, 4, RST(0x38) ) },
 
         // control/misc
         { 0x00, new Opcode(0x00, "NOP", 1, 1, new Tick[] {

@@ -1,5 +1,6 @@
 using SharpBoy.Core.Graphics;
 using SharpBoy.Core.Memory;
+using SharpBoy.Core.Utilities;
 
 namespace SharpBoy.Core.Processor.Opcodes;
 
@@ -134,5 +135,13 @@ public partial class OpcodeHandler : BaseOpcodeHandler
         _reg.FlagN = false;
         _reg.FlagH = false;
         _reg.FlagC = false;
+    }
+
+    private Tick[] RST(word address) =>
+        new Tick[] {
+            () => { _mmu[--_reg.SP] = _reg.PC.Msb(); },
+            () => { _mmu[--_reg.SP] = _reg.PC.Lsb(); },
+            () => { _reg.PC = address; },
+            };
     }
 }
