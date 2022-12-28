@@ -29,6 +29,12 @@ public partial class OpcodeHandler
         _opcodes = Initialize();
     }
 
+    /// <summary>
+    /// Reads the next byte from memory and increments PC
+    /// </summary>
+    /// <returns></returns>
+    private byte NextByte() => _mmu[_reg.PC++];
+
     private void ADC(byte value)
     {
         int carry = _reg.FlagC ? 1 : 0;
