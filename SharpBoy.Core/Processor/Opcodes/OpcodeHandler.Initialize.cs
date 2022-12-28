@@ -7,35 +7,35 @@ public partial class OpcodeHandler
     private Dictionary<byte, Opcode> Initialize() => new Dictionary<byte, Opcode>
     {
         // control/br
-        { 0x18, new Opcode(0x18, "JR i8", 2, 3, new Tick[] {
+        { 0x18, new Opcode(0x18, "JR {0}", 2, 3, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x20, new Opcode(0x20, "JR NZ,i8", 2, 2, new Tick[] {
+        { 0x20, new Opcode(0x20, "JR NZ,{0}", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x28, new Opcode(0x28, "JR Z,i8", 2, 2, new Tick[] {
+        { 0x28, new Opcode(0x28, "JR Z,{0}", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x30, new Opcode(0x30, "JR NC,i8", 2, 2, new Tick[] {
+        { 0x30, new Opcode(0x30, "JR NC,{0}", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x38, new Opcode(0x38, "JR C,i8", 2, 2, new Tick[] {
+        { 0x38, new Opcode(0x38, "JR C,{0}", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
         { 0xC0, new Opcode(0xC0, "RET NZ", 1, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xC2, new Opcode(0xC2, "JP NZ,u16", 3, 3, new Tick[] {
+        { 0xC2, new Opcode(0xC2, "JP NZ,${0:X4}", 3, 3, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xC3, new Opcode(0xC3, "JP u16", 3, 4, new Tick[] {
+        { 0xC3, new Opcode(0xC3, "JP ${0:X4}", 3, 4, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xC4, new Opcode(0xC4, "CALL NZ,u16", 3, 3, new Tick[] {
+        { 0xC4, new Opcode(0xC4, "CALL NZ,${0:X4}", 3, 6, new Tick[] {
             () => { _lsb = _mmu[_reg.PC++]; },
             () => { _msb = _mmu[_reg.PC++]; _stop = _reg.FlagZ; },
             () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Msb(); },
@@ -55,18 +55,18 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xCA, new Opcode(0xCA, "JP Z,u16", 3, 3, new Tick[] {
+        { 0xCA, new Opcode(0xCA, "JP Z,${0:X4}", 3, 3, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xCC, new Opcode(0xCC, "CALL Z,u16", 3, 3, new Tick[] {
+        { 0xCC, new Opcode(0xCC, "CALL Z,${0:X4}", 3, 6, new Tick[] {
             () => { _lsb = _mmu[_reg.PC++]; },
             () => { _msb = _mmu[_reg.PC++]; _stop = !_reg.FlagZ; },
             () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Msb(); },
             () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Lsb(); },
             () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
-        { 0xCD, new Opcode(0xCD, "CALL u16", 3, 6, new Tick[] {
+        { 0xCD, new Opcode(0xCD, "CALL ${0:X4}", 3, 6, new Tick[] {
             () => { _lsb = _mmu[_reg.PC++]; },
             () => { _msb = _mmu[_reg.PC++]; },
             () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Msb(); },
@@ -81,11 +81,11 @@ public partial class OpcodeHandler
         { 0xD0, new Opcode(0xD0, "RET NC", 1, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xD2, new Opcode(0xD2, "JP NC,u16", 3, 3, new Tick[] {
+        { 0xD2, new Opcode(0xD2, "JP NC,${0:X4}", 3, 3, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xD4, new Opcode(0xD4, "CALL NC,u16", 3, 6, new Tick[] {
+        { 0xD4, new Opcode(0xD4, "CALL NC,${0:X4}", 3, 6, new Tick[] {
             () => { _lsb = _mmu[_reg.PC++]; },
             () => { _msb = _mmu[_reg.PC++]; _stop = _reg.FlagC; },
             () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Msb(); },
@@ -105,11 +105,11 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xDA, new Opcode(0xDA, "JP C,u16", 3, 3, new Tick[] {
+        { 0xDA, new Opcode(0xDA, "JP C,${0:X4}", 3, 3, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xDC, new Opcode(0xDC, "CALL C,u16", 3, 3, new Tick[] {
+        { 0xDC, new Opcode(0xDC, "CALL C,${0:X4}", 3, 6, new Tick[] {
             () => { _lsb = _mmu[_reg.PC++]; },
             () => { _msb = _mmu[_reg.PC++]; _stop = !_reg.FlagC; },
             () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Msb(); },
@@ -238,36 +238,36 @@ public partial class OpcodeHandler
         { 0x3B, new Opcode(0x3B, "DEC SP", 1, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xE8, new Opcode(0xE8, "ADD SP,i8", 2, 4, new Tick[] {
+        { 0xE8, new Opcode(0xE8, "ADD SP,{0}", 2, 4, new Tick[] {
             () => { ADDSP(_mmu[_reg.PC++]); },
             () => { },
             () => { },
         } ) },
-        { 0xF8, new Opcode(0xF8, "LD HL,SP+i8", 2, 3, new Tick[] {
+        { 0xF8, new Opcode(0xF8, "LD HL,SP+{0}", 2, 3, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
 
         // x16/lsm
-        { 0x01, new Opcode(0x01, "LD BC,u16", 3, 3, new Tick[] {
+        { 0x01, new Opcode(0x01, "LD BC,${0:X4}", 3, 3, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x08, new Opcode(0x08, "LD (u16),SP", 3, 5, new Tick[] {
+        { 0x08, new Opcode(0x08, "LD (${0:X4}),SP", 3, 5, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x11, new Opcode(0x11, "LD DE,u16", 3, 3, new Tick[] {
+        { 0x11, new Opcode(0x11, "LD DE,${0:X4}", 3, 3, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x21, new Opcode(0x21, "LD HL,u16", 3, 3, new Tick[] {
+        { 0x21, new Opcode(0x21, "LD HL,${0:X4}", 3, 3, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x31, new Opcode(0x31, "LD SP,u16", 3, 3, new Tick[] {
+        { 0x31, new Opcode(0x31, "LD SP,${0:X4}", 3, 3, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
@@ -352,7 +352,7 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0x2F, new Opcode(0x2F, "CPL", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = (byte)~_reg.A; _reg.FlagN = true; _reg.FlagH = true; },
         } ) },
         { 0x34, new Opcode(0x34, "INC (HL)", 1, 3, new Tick[] {
             () => { throw new NotImplementedException(); },
@@ -566,28 +566,28 @@ public partial class OpcodeHandler
         { 0xBF, new Opcode(0xBF, "CP A,A", 1, 1, new Tick[] {
             () => { CP(_reg.A); },
         } ) },
-        { 0xC6, new Opcode(0xC6, "ADD A,u8", 2, 2, new Tick[] {
+        { 0xC6, new Opcode(0xC6, "ADD A,${0:X2}", 2, 2, new Tick[] {
             () => { ADD(_mmu[_reg.PC++]); },
         } ) },
-        { 0xCE, new Opcode(0xCE, "ADC A,u8", 2, 2, new Tick[] {
+        { 0xCE, new Opcode(0xCE, "ADC A,${0:X2}", 2, 2, new Tick[] {
             () => { ADC(_mmu[_reg.PC++]); },
         } ) },
-        { 0xD6, new Opcode(0xD6, "SUB A,u8", 2, 2, new Tick[] {
+        { 0xD6, new Opcode(0xD6, "SUB A,${0:X2}", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xDE, new Opcode(0xDE, "SBC A,u8", 2, 2, new Tick[] {
+        { 0xDE, new Opcode(0xDE, "SBC A,${0:X2}", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xE6, new Opcode(0xE6, "AND A,u8", 2, 2, new Tick[] {
+        { 0xE6, new Opcode(0xE6, "AND A,${0:X2}", 2, 2, new Tick[] {
             () => { AND(_mmu[_reg.PC]); },
         } ) },
-        { 0xEE, new Opcode(0xEE, "XOR A,u8", 2, 2, new Tick[] {
+        { 0xEE, new Opcode(0xEE, "XOR A,${0:X2}", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xF6, new Opcode(0xF6, "OR A,u8", 2, 2, new Tick[] {
+        { 0xF6, new Opcode(0xF6, "OR A,${0:X2}", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xFE, new Opcode(0xFE, "CP A,u8", 2, 2, new Tick[] {
+        { 0xFE, new Opcode(0xFE, "CP A,${0:X2}", 2, 2, new Tick[] {
             () => { CP(_mmu[_reg.PC++]); },
         } ) },
 
@@ -595,50 +595,50 @@ public partial class OpcodeHandler
         { 0x02, new Opcode(0x02, "LD (BC),A", 1, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x06, new Opcode(0x06, "LD B,u8", 2, 2, new Tick[] {
+        { 0x06, new Opcode(0x06, "LD B,${0:X2}", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
         { 0x0A, new Opcode(0x0A, "LD A,(BC)", 1, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x0E, new Opcode(0x0E, "LD C,u8", 2, 2, new Tick[] {
+        { 0x0E, new Opcode(0x0E, "LD C,${0:X2}", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
         { 0x12, new Opcode(0x12, "LD (DE),A", 1, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x16, new Opcode(0x16, "LD D,u8", 2, 2, new Tick[] {
+        { 0x16, new Opcode(0x16, "LD D,${0:X2}", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
         { 0x1A, new Opcode(0x1A, "LD A,(DE)", 1, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x1E, new Opcode(0x1E, "LD E,u8", 2, 2, new Tick[] {
+        { 0x1E, new Opcode(0x1E, "LD E,${0:X2}", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
         { 0x22, new Opcode(0x22, "LD (HL+),A", 1, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x26, new Opcode(0x26, "LD H,u8", 2, 2, new Tick[] {
+        { 0x26, new Opcode(0x26, "LD H,${0:X2}", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
         { 0x2A, new Opcode(0x2A, "LD A,(HL+)", 1, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x2E, new Opcode(0x2E, "LD L,u8", 2, 2, new Tick[] {
+        { 0x2E, new Opcode(0x2E, "LD L,${0:X2}", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
         { 0x32, new Opcode(0x32, "LD (HL-),A", 1, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x36, new Opcode(0x36, "LD (HL),u8", 2, 3, new Tick[] {
+        { 0x36, new Opcode(0x36, "LD (HL),${0:X2}", 2, 3, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
         { 0x3A, new Opcode(0x3A, "LD A,(HL-)", 1, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0x3E, new Opcode(0x3E, "LD A,u8", 2, 2, new Tick[] {
+        { 0x3E, new Opcode(0x3E, "LD A,${0:X2}", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
         { 0x40, new Opcode(0x40, "LD B,B", 1, 1, new Tick[] {
@@ -830,26 +830,26 @@ public partial class OpcodeHandler
         { 0x7F, new Opcode(0x7F, "LD A,A", 1, 1, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xE0, new Opcode(0xE0, "LD (FF00+u8),A", 2, 3, new Tick[] {
+        { 0xE0, new Opcode(0xE0, "LD (FF00+${0:X2}),A", 2, 3, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
         { 0xE2, new Opcode(0xE2, "LD (FF00+C),A", 1, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xEA, new Opcode(0xEA, "LD (u16),A", 3, 4, new Tick[] {
+        { 0xEA, new Opcode(0xEA, "LD (${0:X4}),A", 3, 4, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xF0, new Opcode(0xF0, "LD A,(FF00+u8)", 2, 3, new Tick[] {
+        { 0xF0, new Opcode(0xF0, "LD A,(FF00+${0:X2})", 2, 3, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
         { 0xF2, new Opcode(0xF2, "LD A,(FF00+C)", 1, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xFA, new Opcode(0xFA, "LD A,(u16)", 3, 4, new Tick[] {
+        { 0xFA, new Opcode(0xFA, "LD A,(${0:X4})", 3, 4, new Tick[] {
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
