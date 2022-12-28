@@ -141,7 +141,6 @@ public partial class OpcodeHandler : BaseOpcodeHandler
         new Tick[] {
             () => { _mmu[--_reg.SP] = _reg.PC.Msb(); },
             () => { _mmu[--_reg.SP] = _reg.PC.Lsb(); },
-            () => { _reg.PC = address; },
-            };
-    }
+            () => { _reg.PC = address; }
+        };
 }
