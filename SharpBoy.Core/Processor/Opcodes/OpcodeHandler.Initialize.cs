@@ -313,63 +313,63 @@ public partial class OpcodeHandler
 
         // x8/alu
         { 0x04, new Opcode(0x04, "INC B", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = INC(_reg.B); },
         } ) },
         { 0x05, new Opcode(0x05, "DEC B", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = DEC(_reg.B); },
         } ) },
         { 0x0C, new Opcode(0x0C, "INC C", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = INC(_reg.C); },
         } ) },
         { 0x0D, new Opcode(0x0D, "DEC C", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = DEC(_reg.C); },
         } ) },
         { 0x14, new Opcode(0x14, "INC D", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = INC(_reg.D); },
         } ) },
         { 0x15, new Opcode(0x15, "DEC D", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = DEC(_reg.D); },
         } ) },
         { 0x1C, new Opcode(0x1C, "INC E", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = INC(_reg.E); },
         } ) },
         { 0x1D, new Opcode(0x1D, "DEC E", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = DEC(_reg.E); },
         } ) },
         { 0x24, new Opcode(0x24, "INC H", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = INC(_reg.H); },
         } ) },
         { 0x25, new Opcode(0x25, "DEC H", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = DEC(_reg.H); },
         } ) },
         { 0x27, new Opcode(0x27, "DAA", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { DAA(); },
         } ) },
         { 0x2C, new Opcode(0x2C, "INC L", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = INC(_reg.L); },
         } ) },
         { 0x2D, new Opcode(0x2D, "DEC L", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = DEC(_reg.L); },
         } ) },
         { 0x2F, new Opcode(0x2F, "CPL", 1, 1, new Tick[] {
             () => { _reg.A = (byte)~_reg.A; _reg.FlagN = true; _reg.FlagH = true; },
         } ) },
         { 0x34, new Opcode(0x34, "INC (HL)", 1, 3, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => {  _operand = INC(_mmu[_reg.HL]); },
+            () => { _mmu[_reg.HL] = _operand; },
         } ) },
         { 0x35, new Opcode(0x35, "DEC (HL)", 1, 3, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => {  _operand = DEC(_mmu[_reg.HL]); },
+            () => { _mmu[_reg.HL] = _operand; },
         } ) },
         { 0x37, new Opcode(0x37, "SCF", 1, 1, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
         { 0x3C, new Opcode(0x3C, "INC A", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = INC(_reg.A); },
         } ) },
         { 0x3D, new Opcode(0x3D, "DEC A", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = DEC(_reg.A); },
         } ) },
         { 0x3F, new Opcode(0x3F, "CCF", 1, 1, new Tick[] {
             () => { _reg.FlagC = !_reg.FlagC; _reg.FlagN = false; _reg.FlagH = false; },
