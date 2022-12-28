@@ -644,25 +644,25 @@ public partial class CbOpcodeHandler
             () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xC7, new Opcode(0xC7, "SET 0,A", 2, 2, new Tick[] {
-            () => { _reg.A = SET(0, _reg.A); },
+            () => { _reg.A = SET(1, _reg.A); },
         } ) },
         { 0xC8, new Opcode(0xC8, "SET 1,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = SET(1, _reg.B); },
         } ) },
         { 0xC9, new Opcode(0xC9, "SET 1,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = SET(1, _reg.C); },
         } ) },
         { 0xCA, new Opcode(0xCA, "SET 1,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = SET(1, _reg.D); },
         } ) },
         { 0xCB, new Opcode(0xCB, "SET 1,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = SET(1, _reg.E); },
         } ) },
         { 0xCC, new Opcode(0xCC, "SET 1,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = SET(1, _reg.H); },
         } ) },
         { 0xCD, new Opcode(0xCD, "SET 1,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = SET(1, _reg.L); },
         } ) },
         { 0xCE, new Opcode(0xCE, "SET 1,[HL]", 2, 4, new Tick[] {
             () => { },
@@ -670,25 +670,25 @@ public partial class CbOpcodeHandler
             () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xCF, new Opcode(0xCF, "SET 1,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = SET(1, _reg.A); },
         } ) },
         { 0xD0, new Opcode(0xD0, "SET 2,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = SET(2, _reg.B); },
         } ) },
         { 0xD1, new Opcode(0xD1, "SET 2,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = SET(2, _reg.C); },
         } ) },
         { 0xD2, new Opcode(0xD2, "SET 2,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = SET(2, _reg.D); },
         } ) },
         { 0xD3, new Opcode(0xD3, "SET 2,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = SET(2, _reg.E); },
         } ) },
         { 0xD4, new Opcode(0xD4, "SET 2,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = SET(2, _reg.H); },
         } ) },
         { 0xD5, new Opcode(0xD5, "SET 2,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = SET(2, _reg.L); }, 
         } ) },
         { 0xD6, new Opcode(0xD6, "SET 2,[HL]", 2, 4, new Tick[] {
             () => { },
@@ -696,25 +696,25 @@ public partial class CbOpcodeHandler
             () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xD7, new Opcode(0xD7, "SET 2,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = SET(2, _reg.A); },
         } ) },
         { 0xD8, new Opcode(0xD8, "SET 3,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = SET(3, _reg.B); },
         } ) },
         { 0xD9, new Opcode(0xD9, "SET 3,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = SET(3, _reg.C); },
         } ) },
         { 0xDA, new Opcode(0xDA, "SET 3,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = SET(3, _reg.D); },
         } ) },
         { 0xDB, new Opcode(0xDB, "SET 3,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = SET(3, _reg.E); },
         } ) },
         { 0xDC, new Opcode(0xDC, "SET 3,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = SET(3, _reg.H); },
         } ) },
         { 0xDD, new Opcode(0xDD, "SET 3,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = SET(3, _reg.L); },
         } ) },
         { 0xDE, new Opcode(0xDE, "SET 3,[HL]", 2, 4, new Tick[] {
             () => { },
@@ -722,25 +722,25 @@ public partial class CbOpcodeHandler
             () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xDF, new Opcode(0xDF, "SET 3,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = SET(3, _reg.A); },
         } ) },
         { 0xE0, new Opcode(0xE0, "SET 4,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = SET(4, _reg.B); },
         } ) },
         { 0xE1, new Opcode(0xE1, "SET 4,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = SET(4, _reg.C); },
         } ) },
         { 0xE2, new Opcode(0xE2, "SET 4,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = SET(4, _reg.D); },
         } ) },
         { 0xE3, new Opcode(0xE3, "SET 4,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = SET(4, _reg.E); },
         } ) },
         { 0xE4, new Opcode(0xE4, "SET 4,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = SET(4, _reg.H); },
         } ) },
         { 0xE5, new Opcode(0xE5, "SET 4,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = SET(4, _reg.L); },
         } ) },
         { 0xE6, new Opcode(0xE6, "SET 4,[HL]", 2, 4, new Tick[] {
             () => { },
@@ -748,25 +748,25 @@ public partial class CbOpcodeHandler
             () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xE7, new Opcode(0xE7, "SET 4,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = SET(4, _reg.A); },
         } ) },
         { 0xE8, new Opcode(0xE8, "SET 5,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = SET(5, _reg.B); },
         } ) },
         { 0xE9, new Opcode(0xE9, "SET 5,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = SET(5, _reg.C); },
         } ) },
         { 0xEA, new Opcode(0xEA, "SET 5,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = SET(5, _reg.D); },
         } ) },
         { 0xEB, new Opcode(0xEB, "SET 5,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = SET(5, _reg.E); },
         } ) },
         { 0xEC, new Opcode(0xEC, "SET 5,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = SET(5, _reg.H); },
         } ) },
         { 0xED, new Opcode(0xED, "SET 5,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = SET(5, _reg.L); },
         } ) },
         { 0xEE, new Opcode(0xEE, "SET 5,[HL]", 2, 4, new Tick[] {
             () => { },
@@ -774,25 +774,25 @@ public partial class CbOpcodeHandler
             () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xEF, new Opcode(0xEF, "SET 5,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = SET(5, _reg.A); },
         } ) },
         { 0xF0, new Opcode(0xF0, "SET 6,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = SET(6, _reg.B); },
         } ) },
         { 0xF1, new Opcode(0xF1, "SET 6,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = SET(6, _reg.C); },
         } ) },
         { 0xF2, new Opcode(0xF2, "SET 6,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = SET(6, _reg.D); },
         } ) },
         { 0xF3, new Opcode(0xF3, "SET 6,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = SET(6, _reg.E); },
         } ) },
         { 0xF4, new Opcode(0xF4, "SET 6,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = SET(6, _reg.H); },
         } ) },
         { 0xF5, new Opcode(0xF5, "SET 6,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = SET(6, _reg.L); },
         } ) },
         { 0xF6, new Opcode(0xF6, "SET 6,[HL]", 2, 4, new Tick[] {
             () => { },
@@ -800,25 +800,25 @@ public partial class CbOpcodeHandler
             () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xF7, new Opcode(0xF7, "SET 6,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = SET(6, _reg.A); },
         } ) },
         { 0xF8, new Opcode(0xF8, "SET 7,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = SET(7, _reg.B); },
         } ) },
         { 0xF9, new Opcode(0xF9, "SET 7,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = SET(7, _reg.C); },
         } ) },
         { 0xFA, new Opcode(0xFA, "SET 7,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = SET(7, _reg.D); },
         } ) },
         { 0xFB, new Opcode(0xFB, "SET 7,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = SET(7, _reg.E); },
         } ) },
         { 0xFC, new Opcode(0xFC, "SET 7,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = SET(7, _reg.H); },
         } ) },
         { 0xFD, new Opcode(0xFD, "SET 7,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = SET(7, _reg.L); },
         } ) },
         { 0xFE, new Opcode(0xFE, "SET 7,[HL]", 2, 4, new Tick[] {
             () => { },
@@ -826,7 +826,7 @@ public partial class CbOpcodeHandler
             () => { _mmu[_reg.HL] = _result; },
         } ) },
         { 0xFF, new Opcode(0xFF, "SET 7,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = SET(7, _reg.A); },
         } ) },
 
     };
