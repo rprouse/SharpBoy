@@ -17,7 +17,7 @@ public class Interupts
     /// following EI.
     /// </summary>
     /// <exception cref="NotImplementedException"></exception>
-    public void Enable()
+    public void Enable(bool withDelay)
     {
         throw new NotImplementedException();
     }

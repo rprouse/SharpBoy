@@ -27,8 +27,11 @@ public partial class OpcodeHandler
             () => { _operand = NextByte(); _stop = !_reg.FlagC; },
             () => { _reg.PC = (word)(_reg.PC + (sbyte)_operand); },
         } ) },
-        { 0xC0, new Opcode(0xC0, "RET NZ", 1, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xC0, new Opcode(0xC0, "RET NZ", 1, 5, new Tick[] {
+            () => { _stop = _reg.FlagZ; },
+            () => { _lsb = _mmu[_reg.SP++]; },
+            () => { _msb = _mmu[_reg.SP++]; },
+            () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
         { 0xC2, new Opcode(0xC2, "JP NZ,${0:X4}", 3, 4, new Tick[] {
             () => { _lsb = NextByte(); },
@@ -52,13 +55,16 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xC8, new Opcode(0xC8, "RET Z", 1, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xC8, new Opcode(0xC8, "RET Z", 1, 5, new Tick[] {
+            () => { _stop = !_reg.FlagZ; },
+            () => { _lsb = _mmu[_reg.SP++]; },
+            () => { _msb = _mmu[_reg.SP++]; },
+            () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
         { 0xC9, new Opcode(0xC9, "RET", 1, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { _lsb = _mmu[_reg.SP++]; },
+            () => { _msb = _mmu[_reg.SP++]; },
+            () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
         { 0xCA, new Opcode(0xCA, "JP Z,${0:X4}", 3, 4, new Tick[] {
             () => { _lsb = NextByte(); },
@@ -84,8 +90,11 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xD0, new Opcode(0xD0, "RET NC", 1, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xD0, new Opcode(0xD0, "RET NC", 1, 5, new Tick[] {
+            () => { _stop = _reg.FlagC; },
+            () => { _lsb = _mmu[_reg.SP++]; },
+            () => { _msb = _mmu[_reg.SP++]; },
+            () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
         { 0xD2, new Opcode(0xD2, "JP NC,${0:X4}", 3, 4, new Tick[] {
             () => { _lsb = NextByte(); },
@@ -104,13 +113,16 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xD8, new Opcode(0xD8, "RET C", 1, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xD8, new Opcode(0xD8, "RET C", 1, 5, new Tick[] {
+            () => { _stop = !_reg.FlagC; },
+            () => { _lsb = _mmu[_reg.SP++]; },
+            () => { _msb = _mmu[_reg.SP++]; },
+            () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
         { 0xD9, new Opcode(0xD9, "RETI", 1, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { _lsb = _mmu[_reg.SP++]; },
+            () => { _msb = _mmu[_reg.SP++]; },
+            () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); _int.Enable(false); },
         } ) },
         { 0xDA, new Opcode(0xDA, "JP C,${0:X4}", 3, 4, new Tick[] {
             () => { _lsb = NextByte(); },
@@ -170,7 +182,7 @@ public partial class OpcodeHandler
             () => { _int.Disable(); },
         } ) },
         { 0xFB, new Opcode(0xFB, "EI", 1, 1, new Tick[] {
-            () => { _int.Enable(); },
+            () => { _int.Enable(true); },
         } ) },
 
         // unused
