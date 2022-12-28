@@ -34,7 +34,7 @@ public partial class OpcodeHandler
         int result = _reg.A + value + carry;
         _reg.FlagZ = result == 0;
         _reg.FlagN = false;
-        _reg.FlagH = (_reg.A & 0b_0000_1111) + (value & 0b_0000_1111) + carry > 0b_0000_1111;
+        _reg.FlagH = (_reg.A & 0x0F) + (value & 0x0F) + carry > 0x0F;
         _reg.FlagC = result > 0xFF;
         _reg.A = (byte)result;
     }
@@ -44,8 +44,36 @@ public partial class OpcodeHandler
         int result = _reg.A + value;
         _reg.FlagZ = result == 0;
         _reg.FlagN = false;
-        _reg.FlagH = (_reg.A & 0b_0000_1111) + (value & 0b_0000_1111) > 0b_0000_1111;
+        _reg.FlagH = (_reg.A & 0x0F) + (value & 0x0F) > 0x0F;
         _reg.FlagC = result > 0xFF;
         _reg.A = (byte)result;
+    }
+
+    private void ADDHL(word value)
+    {
+        int result = _reg.HL + value;
+        _reg.FlagN = false;
+        _reg.FlagH = (_reg.HL & 0x0FFF) + (value & 0x0FFF) > 0x0FFF;
+        _reg.FlagC = result > 0xFFFF;
+        _reg.HL = (word)result;
+    }
+
+    private void ADDSP(byte value)
+    {
+        int result = _reg.SP + value;
+        _reg.FlagZ = false;
+        _reg.FlagN = false;
+        _reg.FlagH = (_reg.SP & 0x000F) + (value & 0x0F) > 0x000F;
+        _reg.FlagC = (_reg.SP & 0x00FF) + value > 0x00FF;
+        _reg.SP = (word)result;
+    }
+
+    private void AND(byte value)
+    {
+        _reg.A &= value;
+        _reg.FlagZ = _reg.A == 0;
+        _reg.FlagN = false;
+        _reg.FlagH = true;
+        _reg.FlagC = false;
     }
 }

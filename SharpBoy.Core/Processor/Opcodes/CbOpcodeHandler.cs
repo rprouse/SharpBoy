@@ -20,4 +20,11 @@ public partial class CbOpcodeHandler
         _int = interupts;
         _opcodes = Initialize();
     }
+
+    private void BIT(int bit, byte value)
+    {
+        _reg.FlagZ = (value & 1 << bit) == 0;
+        _reg.FlagN = false;
+        _reg.FlagH = true;
+    }
 }

@@ -214,204 +214,203 @@ public partial class CbOpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0x40, new Opcode(0x40, "BIT 0,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(0, _reg.B); },
         } ) },
         { 0x41, new Opcode(0x41, "BIT 0,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(0, _reg.C); },
         } ) },
         { 0x42, new Opcode(0x42, "BIT 0,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(0, _reg.D); },
         } ) },
         { 0x43, new Opcode(0x43, "BIT 0,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(0, _reg.E); },
         } ) },
         { 0x44, new Opcode(0x44, "BIT 0,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(0, _reg.H); },
         } ) },
         { 0x45, new Opcode(0x45, "BIT 0,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(0, _reg.L); },
         } ) },
         { 0x46, new Opcode(0x46, "BIT 0,(HL)", 2, 3, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { BIT(0, _mmu[_reg.HL]); },
+            () => { },
         } ) },
         { 0x47, new Opcode(0x47, "BIT 0,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(0, _reg.A); },
         } ) },
         { 0x48, new Opcode(0x48, "BIT 1,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(1, _reg.B); },
         } ) },
         { 0x49, new Opcode(0x49, "BIT 1,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(1, _reg.C); },
         } ) },
         { 0x4A, new Opcode(0x4A, "BIT 1,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(1, _reg.D); },
         } ) },
         { 0x4B, new Opcode(0x4B, "BIT 1,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(1, _reg.E); },
         } ) },
         { 0x4C, new Opcode(0x4C, "BIT 1,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(1, _reg.H); },
         } ) },
         { 0x4D, new Opcode(0x4D, "BIT 1,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(1, _reg.L); },
         } ) },
         { 0x4E, new Opcode(0x4E, "BIT 1,(HL)", 2, 3, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { BIT(1, _mmu[_reg.HL]); },
+            () => { },
         } ) },
         { 0x4F, new Opcode(0x4F, "BIT 1,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(1, _reg.A); },
         } ) },
         { 0x50, new Opcode(0x50, "BIT 2,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(2, _reg.B); },
         } ) },
         { 0x51, new Opcode(0x51, "BIT 2,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(2, _reg.C); },
         } ) },
         { 0x52, new Opcode(0x52, "BIT 2,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(2, _reg.D); },
         } ) },
         { 0x53, new Opcode(0x53, "BIT 2,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(2, _reg.E); },
         } ) },
         { 0x54, new Opcode(0x54, "BIT 2,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(2, _reg.H); },
         } ) },
         { 0x55, new Opcode(0x55, "BIT 2,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(2, _reg.L); },
         } ) },
         { 0x56, new Opcode(0x56, "BIT 2,(HL)", 2, 3, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { BIT(2, _mmu[_reg.HL]); },
+            () => { },
         } ) },
         { 0x57, new Opcode(0x57, "BIT 2,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(2, _reg.A); },
         } ) },
         { 0x58, new Opcode(0x58, "BIT 3,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(3, _reg.B); },
         } ) },
         { 0x59, new Opcode(0x59, "BIT 3,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(3, _reg.C); },
         } ) },
         { 0x5A, new Opcode(0x5A, "BIT 3,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(3, _reg.D); },
         } ) },
         { 0x5B, new Opcode(0x5B, "BIT 3,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(3, _reg.E); },
         } ) },
         { 0x5C, new Opcode(0x5C, "BIT 3,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(3, _reg.H); },
         } ) },
         { 0x5D, new Opcode(0x5D, "BIT 3,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(3, _reg.L); },
         } ) },
         { 0x5E, new Opcode(0x5E, "BIT 3,(HL)", 2, 3, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { BIT(3, _mmu[_reg.HL]); },
+            () => { },
         } ) },
         { 0x5F, new Opcode(0x5F, "BIT 3,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(3, _reg.A); },
         } ) },
         { 0x60, new Opcode(0x60, "BIT 4,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(4, _reg.B); },
         } ) },
         { 0x61, new Opcode(0x61, "BIT 4,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(4, _reg.C); },
         } ) },
         { 0x62, new Opcode(0x62, "BIT 4,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(4, _reg.D); },
         } ) },
         { 0x63, new Opcode(0x63, "BIT 4,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(4, _reg.E); },
         } ) },
         { 0x64, new Opcode(0x64, "BIT 4,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(4, _reg.H); },
         } ) },
         { 0x65, new Opcode(0x65, "BIT 4,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(4, _reg.L); },
         } ) },
         { 0x66, new Opcode(0x66, "BIT 4,(HL)", 2, 3, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { BIT(4, _mmu[_reg.HL]); },
+            () => { },
         } ) },
         { 0x67, new Opcode(0x67, "BIT 4,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(4, _reg.A); },
         } ) },
         { 0x68, new Opcode(0x68, "BIT 5,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(5, _reg.B); },
         } ) },
         { 0x69, new Opcode(0x69, "BIT 5,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(5, _reg.C); },
         } ) },
         { 0x6A, new Opcode(0x6A, "BIT 5,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(5, _reg.D); },
         } ) },
         { 0x6B, new Opcode(0x6B, "BIT 5,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(5, _reg.E); },
         } ) },
         { 0x6C, new Opcode(0x6C, "BIT 5,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(5, _reg.H); },
         } ) },
         { 0x6D, new Opcode(0x6D, "BIT 5,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(5, _reg.L); },
         } ) },
         { 0x6E, new Opcode(0x6E, "BIT 5,(HL)", 2, 3, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { BIT(5, _mmu[_reg.HL]); },
+            () => { },
         } ) },
         { 0x6F, new Opcode(0x6F, "BIT 5,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(5, _reg.A); },
         } ) },
         { 0x70, new Opcode(0x70, "BIT 6,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(6, _reg.B); },
         } ) },
         { 0x71, new Opcode(0x71, "BIT 6,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(6, _reg.C); },
         } ) },
         { 0x72, new Opcode(0x72, "BIT 6,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(6, _reg.D); },
         } ) },
         { 0x73, new Opcode(0x73, "BIT 6,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(6, _reg.E); },
         } ) },
         { 0x74, new Opcode(0x74, "BIT 6,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(6, _reg.H); },
         } ) },
         { 0x75, new Opcode(0x75, "BIT 6,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(6, _reg.L); },
         } ) },
         { 0x76, new Opcode(0x76, "BIT 6,(HL)", 2, 3, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { BIT(6, _mmu[_reg.HL]); },
         } ) },
         { 0x77, new Opcode(0x77, "BIT 6,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(6, _reg.A); },
         } ) },
         { 0x78, new Opcode(0x78, "BIT 7,B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(7, _reg.B); },
         } ) },
         { 0x79, new Opcode(0x79, "BIT 7,C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(7, _reg.C); },
         } ) },
         { 0x7A, new Opcode(0x7A, "BIT 7,D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(7, _reg.D); },
         } ) },
         { 0x7B, new Opcode(0x7B, "BIT 7,E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(7, _reg.E); },
         } ) },
         { 0x7C, new Opcode(0x7C, "BIT 7,H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(7, _reg.H); },
         } ) },
         { 0x7D, new Opcode(0x7D, "BIT 7,L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(7, _reg.L); },
         } ) },
         { 0x7E, new Opcode(0x7E, "BIT 7,(HL)", 2, 3, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { BIT(7, _mmu[_reg.HL]); },
+            () => { },
         } ) },
         { 0x7F, new Opcode(0x7F, "BIT 7,A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { BIT(7, _reg.A); },
         } ) },
         { 0x80, new Opcode(0x80, "RES 0,B", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },

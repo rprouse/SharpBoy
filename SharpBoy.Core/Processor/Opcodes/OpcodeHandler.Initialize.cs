@@ -192,7 +192,7 @@ public partial class OpcodeHandler
             () => { _reg.BC++; },
         } ) },
         { 0x09, new Opcode(0x09, "ADD HL,BC", 1, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADDHL(_reg.BC); },
         } ) },
         { 0x0B, new Opcode(0x0B, "DEC BC", 1, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
@@ -201,7 +201,7 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0x19, new Opcode(0x19, "ADD HL,DE", 1, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADDHL(_reg.DE); },
         } ) },
         { 0x1B, new Opcode(0x1B, "DEC DE", 1, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
@@ -210,7 +210,7 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0x29, new Opcode(0x29, "ADD HL,HL", 1, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADDHL(_reg.HL); },
         } ) },
         { 0x2B, new Opcode(0x2B, "DEC HL", 1, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
@@ -219,15 +219,15 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0x39, new Opcode(0x39, "ADD HL,SP", 1, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { ADDHL(_reg.SP); },
         } ) },
         { 0x3B, new Opcode(0x3B, "DEC SP", 1, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
         { 0xE8, new Opcode(0xE8, "ADD SP,i8", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { ADDSP(_mmu[_reg.SP++]); },
+            () => { },
+            () => { },
         } ) },
         { 0xF8, new Opcode(0xF8, "LD HL,SP+i8", 2, 3, new Tick[] {
             () => { throw new NotImplementedException(); },
@@ -457,28 +457,28 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0xA0, new Opcode(0xA0, "AND A,B", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { AND(_reg.B); },
         } ) },
         { 0xA1, new Opcode(0xA1, "AND A,C", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { AND(_reg.C); },
         } ) },
         { 0xA2, new Opcode(0xA2, "AND A,D", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { AND(_reg.D); },
         } ) },
         { 0xA3, new Opcode(0xA3, "AND A,E", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { AND(_reg.E); },
         } ) },
         { 0xA4, new Opcode(0xA4, "AND A,H", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { AND(_reg.H); },
         } ) },
         { 0xA5, new Opcode(0xA5, "AND A,L", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { AND(_reg.L); },
         } ) },
         { 0xA6, new Opcode(0xA6, "AND A,(HL)", 1, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { AND(_mmu[_reg.HL]); },
         } ) },
         { 0xA7, new Opcode(0xA7, "AND A,A", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { AND(_reg.A); },
         } ) },
         { 0xA8, new Opcode(0xA8, "XOR A,B", 1, 1, new Tick[] {
             () => { throw new NotImplementedException(); },
@@ -565,7 +565,7 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0xE6, new Opcode(0xE6, "AND A,u8", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { AND(_mmu[_reg.SP]); },
         } ) },
         { 0xEE, new Opcode(0xEE, "XOR A,u8", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
