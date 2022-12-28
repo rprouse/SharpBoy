@@ -4,7 +4,7 @@ namespace SharpBoy.Core.Processor.Opcodes;
 
 public partial class OpcodeHandler
 {
-    private Dictionary<byte, Opcode> Initialize() => new Dictionary<byte, Opcode>
+    protected override Dictionary<byte, Opcode> Initialize() => new Dictionary<byte, Opcode>
     {
         // control/br
         { 0x18, new Opcode(0x18, "JR {0}", 2, 3, new Tick[] {
@@ -877,16 +877,16 @@ public partial class OpcodeHandler
 
         // x8/rsb
         { 0x07, new Opcode(0x07, "RLCA", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = RLC(_reg.A); _reg.FlagZ = false; },
         } ) },
         { 0x0F, new Opcode(0x0F, "RRCA", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = RRC(_reg.A); _reg.FlagZ = false; },
         } ) },
         { 0x17, new Opcode(0x17, "RLA", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = RL(_reg.A); _reg.FlagZ = false; },
         } ) },
         { 0x1F, new Opcode(0x1F, "RRA", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = RR(_reg.A); _reg.FlagZ = false; },
         } ) },
 
     };

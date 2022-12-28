@@ -2,112 +2,112 @@ namespace SharpBoy.Core.Processor.Opcodes;
 
 public partial class CbOpcodeHandler
 {
-    private Dictionary<byte, Opcode> Initialize() => new Dictionary<byte, Opcode>
+    protected override Dictionary<byte, Opcode> Initialize() => new Dictionary<byte, Opcode>
     {
         // x8/rsb
         { 0x00, new Opcode(0x00, "RLC B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = RLC(_reg.B); },
         } ) },
         { 0x01, new Opcode(0x01, "RLC C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = RLC(_reg.C); },
         } ) },
         { 0x02, new Opcode(0x02, "RLC D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = RLC(_reg.D); },
         } ) },
         { 0x03, new Opcode(0x03, "RLC E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = RLC(_reg.E); },
         } ) },
         { 0x04, new Opcode(0x04, "RLC H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = RLC(_reg.H); },
         } ) },
         { 0x05, new Opcode(0x05, "RLC L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = RLC(_reg.L); },
         } ) },
         { 0x06, new Opcode(0x06, "RLC [HL]", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { },
+            () => { _operand = _mmu[_reg.HL]; },
+            () => { _mmu[_reg.HL] = RLC(_operand); },
         } ) },
         { 0x07, new Opcode(0x07, "RLC A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = RLC(_reg.A); },
         } ) },
         { 0x08, new Opcode(0x08, "RRC B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = RRC(_reg.B); },
         } ) },
         { 0x09, new Opcode(0x09, "RRC C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = RRC(_reg.C); },
         } ) },
         { 0x0A, new Opcode(0x0A, "RRC D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = RRC(_reg.D); },
         } ) },
         { 0x0B, new Opcode(0x0B, "RRC E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = RRC(_reg.E); },
         } ) },
         { 0x0C, new Opcode(0x0C, "RRC H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = RRC(_reg.H); },
         } ) },
         { 0x0D, new Opcode(0x0D, "RRC L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = RRC(_reg.L); },
         } ) },
         { 0x0E, new Opcode(0x0E, "RRC [HL]", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { },
+            () => { _operand = _mmu[_reg.HL]; },
+            () => { _mmu[_reg.HL] = RRC(_operand); },
         } ) },
         { 0x0F, new Opcode(0x0F, "RRC A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = RRC(_reg.A); },
         } ) },
         { 0x10, new Opcode(0x10, "RL B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = RL(_reg.B); },
         } ) },
         { 0x11, new Opcode(0x11, "RL C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = RL(_reg.C); },
         } ) },
         { 0x12, new Opcode(0x12, "RL D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = RL(_reg.D); },
         } ) },
         { 0x13, new Opcode(0x13, "RL E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = RL(_reg.E); },
         } ) },
         { 0x14, new Opcode(0x14, "RL H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = RL(_reg.H); },
         } ) },
         { 0x15, new Opcode(0x15, "RL L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = RL(_reg.L); },
         } ) },
         { 0x16, new Opcode(0x16, "RL [HL]", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { },
+            () => { _operand = _mmu[_reg.HL]; },
+            () => { _mmu[_reg.HL] = RL(_operand); },
         } ) },
         { 0x17, new Opcode(0x17, "RL A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = RL(_reg.A); },
         } ) },
         { 0x18, new Opcode(0x18, "RR B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = RR(_reg.B); },
         } ) },
         { 0x19, new Opcode(0x19, "RR C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = RR(_reg.C); },
         } ) },
         { 0x1A, new Opcode(0x1A, "RR D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = RR(_reg.D); },
         } ) },
         { 0x1B, new Opcode(0x1B, "RR E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = RR(_reg.E); },
         } ) },
         { 0x1C, new Opcode(0x1C, "RR H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = RR(_reg.H); },
         } ) },
         { 0x1D, new Opcode(0x1D, "RR L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = RR(_reg.L); },
         } ) },
         { 0x1E, new Opcode(0x1E, "RR [HL]", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { },
+            () => { _operand = _mmu[_reg.HL]; },
+            () => { _mmu[_reg.HL] = RR(_operand); },
         } ) },
         { 0x1F, new Opcode(0x1F, "RR A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = RR(_reg.A); },
         } ) },
         { 0x20, new Opcode(0x20, "SLA B", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },

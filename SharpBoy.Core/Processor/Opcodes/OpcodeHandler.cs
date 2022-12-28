@@ -3,31 +3,17 @@ using SharpBoy.Core.Memory;
 
 namespace SharpBoy.Core.Processor.Opcodes;
 
-public partial class OpcodeHandler
+public partial class OpcodeHandler : BaseOpcodeHandler
 {
-    private readonly Registers _reg;
-    private readonly MMU _mmu;
-    private readonly VPU _vpu;
-    private readonly Interupts _int;
-
     // Some variables to carry values between ticks
     private byte _lsb;
     private byte _msb;
     private byte _operand;
     private word _address;
-    private word _result;
     private bool _stop;
 
-    private Dictionary<byte, Opcode> _opcodes;
-
     public OpcodeHandler(Registers registers, MMU mmu, VPU vpu, Interupts interupts)
-    {
-        _reg = registers;
-        _mmu = mmu;
-        _vpu = vpu;
-        _int = interupts;
-        _opcodes = Initialize();
-    }
+        : base(registers, mmu, vpu, interupts) { }
 
     /// <summary>
     /// Reads the next byte from memory and increments PC
@@ -107,7 +93,7 @@ public partial class OpcodeHandler
             }
             if (_reg.FlagH || (_reg.A & 0x0F) > 0x09)
             {
-                _reg.A += 0x6;
+                _reg.A += 0x06;
             }
         }
         _reg.FlagZ = _reg.A == 0;
