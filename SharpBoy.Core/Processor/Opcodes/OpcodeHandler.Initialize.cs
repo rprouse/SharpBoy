@@ -372,7 +372,7 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0x3F, new Opcode(0x3F, "CCF", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.FlagC = !_reg.FlagC; _reg.FlagN = false; _reg.FlagH = false; },
         } ) },
         { 0x80, new Opcode(0x80, "ADD A,B", 1, 1, new Tick[] {
             () => { ADD(_reg.B); },
@@ -543,28 +543,28 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0xB8, new Opcode(0xB8, "CP A,B", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { CP(_reg.B); },
         } ) },
         { 0xB9, new Opcode(0xB9, "CP A,C", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { CP(_reg.C); },
         } ) },
         { 0xBA, new Opcode(0xBA, "CP A,D", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { CP(_reg.D); },
         } ) },
         { 0xBB, new Opcode(0xBB, "CP A,E", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { CP(_reg.E); },
         } ) },
         { 0xBC, new Opcode(0xBC, "CP A,H", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { CP(_reg.H); },
         } ) },
         { 0xBD, new Opcode(0xBD, "CP A,L", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { CP(_reg.L); },
         } ) },
         { 0xBE, new Opcode(0xBE, "CP A,(HL)", 1, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { CP(_mmu[_reg.HL]); },
         } ) },
         { 0xBF, new Opcode(0xBF, "CP A,A", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { CP(_reg.A); },
         } ) },
         { 0xC6, new Opcode(0xC6, "ADD A,u8", 2, 2, new Tick[] {
             () => { ADD(_mmu[_reg.PC++]); },
@@ -588,7 +588,7 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0xFE, new Opcode(0xFE, "CP A,u8", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { CP(_mmu[_reg.PC++]); },
         } ) },
 
         // x8/lsm

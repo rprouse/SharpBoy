@@ -77,4 +77,12 @@ public partial class OpcodeHandler
         _reg.FlagH = true;
         _reg.FlagC = false;
     }
+
+    private void CP(byte value)
+    {
+        _reg.FlagZ = _reg.A == value;
+        _reg.FlagN = true;
+        _reg.FlagH = (value & 0x0F) > (_reg.A & 0x0F);
+        _reg.FlagC = value > _reg.A;
+    }
 }
