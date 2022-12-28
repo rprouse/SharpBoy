@@ -477,77 +477,77 @@ public partial class OpcodeHandler
         { 0x9F, new Opcode(0x9F, "SBC A,A", 1, 1, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xA0, new Opcode(0xA0, "AND A,B", 1, 1, new Tick[] {
+        { 0xA0, new Opcode(0xA0, "AND B", 1, 1, new Tick[] {
             () => { AND(_reg.B); },
         } ) },
-        { 0xA1, new Opcode(0xA1, "AND A,C", 1, 1, new Tick[] {
+        { 0xA1, new Opcode(0xA1, "AND C", 1, 1, new Tick[] {
             () => { AND(_reg.C); },
         } ) },
-        { 0xA2, new Opcode(0xA2, "AND A,D", 1, 1, new Tick[] {
+        { 0xA2, new Opcode(0xA2, "AND D", 1, 1, new Tick[] {
             () => { AND(_reg.D); },
         } ) },
-        { 0xA3, new Opcode(0xA3, "AND A,E", 1, 1, new Tick[] {
+        { 0xA3, new Opcode(0xA3, "AND E", 1, 1, new Tick[] {
             () => { AND(_reg.E); },
         } ) },
-        { 0xA4, new Opcode(0xA4, "AND A,H", 1, 1, new Tick[] {
+        { 0xA4, new Opcode(0xA4, "AND H", 1, 1, new Tick[] {
             () => { AND(_reg.H); },
         } ) },
-        { 0xA5, new Opcode(0xA5, "AND A,L", 1, 1, new Tick[] {
+        { 0xA5, new Opcode(0xA5, "AND L", 1, 1, new Tick[] {
             () => { AND(_reg.L); },
         } ) },
-        { 0xA6, new Opcode(0xA6, "AND A,[HL]", 1, 2, new Tick[] {
+        { 0xA6, new Opcode(0xA6, "AND [HL]", 1, 2, new Tick[] {
             () => { AND(_mmu[_reg.HL]); },
         } ) },
-        { 0xA7, new Opcode(0xA7, "AND A,A", 1, 1, new Tick[] {
+        { 0xA7, new Opcode(0xA7, "AND A", 1, 1, new Tick[] {
             () => { AND(_reg.A); },
         } ) },
-        { 0xA8, new Opcode(0xA8, "XOR A,B", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xA8, new Opcode(0xA8, "XOR B", 1, 1, new Tick[] {
+            () => { XOR(_reg.B); },
         } ) },
-        { 0xA9, new Opcode(0xA9, "XOR A,C", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xA9, new Opcode(0xA9, "XOR C", 1, 1, new Tick[] {
+            () => { XOR(_reg.C); },
         } ) },
-        { 0xAA, new Opcode(0xAA, "XOR A,D", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xAA, new Opcode(0xAA, "XOR D", 1, 1, new Tick[] {
+            () => { XOR(_reg.D); },
         } ) },
-        { 0xAB, new Opcode(0xAB, "XOR A,E", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xAB, new Opcode(0xAB, "XOR E", 1, 1, new Tick[] {
+            () => { XOR(_reg.E); },
         } ) },
-        { 0xAC, new Opcode(0xAC, "XOR A,H", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xAC, new Opcode(0xAC, "XOR H", 1, 1, new Tick[] {
+            () => { XOR(_reg.H); },
         } ) },
-        { 0xAD, new Opcode(0xAD, "XOR A,L", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xAD, new Opcode(0xAD, "XOR L", 1, 1, new Tick[] {
+            () => { XOR(_reg.L); },
         } ) },
-        { 0xAE, new Opcode(0xAE, "XOR A,[HL]", 1, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xAE, new Opcode(0xAE, "XOR [HL]", 1, 2, new Tick[] {
+            () => { XOR(_mmu[_reg.HL]); },
         } ) },
-        { 0xAF, new Opcode(0xAF, "XOR A,A", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xAF, new Opcode(0xAF, "XOR A", 1, 1, new Tick[] {
+            () => { XOR(_reg.A); },
         } ) },
-        { 0xB0, new Opcode(0xB0, "OR A,B", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xB0, new Opcode(0xB0, "OR B", 1, 1, new Tick[] {
+            () => { OR(_reg.B); },
         } ) },
-        { 0xB1, new Opcode(0xB1, "OR A,C", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xB1, new Opcode(0xB1, "OR C", 1, 1, new Tick[] {
+            () => { OR(_reg.C); },
         } ) },
-        { 0xB2, new Opcode(0xB2, "OR A,D", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xB2, new Opcode(0xB2, "OR D", 1, 1, new Tick[] {
+            () => { OR(_reg.D); },
         } ) },
-        { 0xB3, new Opcode(0xB3, "OR A,E", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xB3, new Opcode(0xB3, "OR E", 1, 1, new Tick[] {
+            () => { OR(_reg.E); },
         } ) },
-        { 0xB4, new Opcode(0xB4, "OR A,H", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xB4, new Opcode(0xB4, "OR H", 1, 1, new Tick[] {
+            () => { OR(_reg.H); },
         } ) },
-        { 0xB5, new Opcode(0xB5, "OR A,L", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xB5, new Opcode(0xB5, "OR L", 1, 1, new Tick[] {
+            () => { OR(_reg.L); },
         } ) },
-        { 0xB6, new Opcode(0xB6, "OR A,[HL]", 1, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xB6, new Opcode(0xB6, "OR [HL]", 1, 2, new Tick[] {
+            () => { OR(_mmu[_reg.HL]); },
         } ) },
-        { 0xB7, new Opcode(0xB7, "OR A,A", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xB7, new Opcode(0xB7, "OR A", 1, 1, new Tick[] {
+            () => { OR(_reg.A); },
         } ) },
         { 0xB8, new Opcode(0xB8, "CP A,B", 1, 1, new Tick[] {
             () => { CP(_reg.B); },
@@ -585,14 +585,14 @@ public partial class OpcodeHandler
         { 0xDE, new Opcode(0xDE, "SBC A,${0:X2}", 2, 2, new Tick[] {
             () => { throw new NotImplementedException(); },
         } ) },
-        { 0xE6, new Opcode(0xE6, "AND A,${0:X2}", 2, 2, new Tick[] {
+        { 0xE6, new Opcode(0xE6, "AND ${0:X2}", 2, 2, new Tick[] {
             () => { AND(_mmu[_reg.PC]); },
         } ) },
-        { 0xEE, new Opcode(0xEE, "XOR A,${0:X2}", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xEE, new Opcode(0xEE, "XOR ${0:X2}", 2, 2, new Tick[] {
+            () => { XOR(_mmu[_reg.PC]); },
         } ) },
-        { 0xF6, new Opcode(0xF6, "OR A,${0:X2}", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+        { 0xF6, new Opcode(0xF6, "OR ${0:X2}", 2, 2, new Tick[] {
+            () => { OR(_mmu[_reg.PC]); },
         } ) },
         { 0xFE, new Opcode(0xFE, "CP A,${0:X2}", 2, 2, new Tick[] {
             () => { CP(NextByte()); },

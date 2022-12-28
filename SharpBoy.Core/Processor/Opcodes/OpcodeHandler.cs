@@ -131,4 +131,22 @@ public partial class OpcodeHandler
         _reg.FlagH = (value & 0x0F) == 0x0F;
         return (byte)result;
     }
+
+    private void OR(byte value)
+    {
+        _reg.A = (byte)(_reg.A | value);
+        _reg.FlagZ = _reg.A == 0;
+        _reg.FlagN = false;
+        _reg.FlagH = false;
+        _reg.FlagC = false;
+    }
+
+    private void XOR(byte value)
+    {
+        _reg.A = (byte)(_reg.A | value);
+        _reg.FlagZ = _reg.A == 0;
+        _reg.FlagN = false;
+        _reg.FlagH = false;
+        _reg.FlagC = false;
+    }
 }
