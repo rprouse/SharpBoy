@@ -144,7 +144,7 @@ public partial class OpcodeHandler
             () => { },
         } ) },
         { 0xCB, new Opcode(0xCB, "PREFIX CB", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { },
         } ) },
         { 0xF3, new Opcode(0xF3, "DI", 1, 1, new Tick[] {
             () => { _int.Disable(); },
