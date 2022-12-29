@@ -141,7 +141,7 @@ public partial class OpcodeHandler
             () => { throw new NotImplementedException(); },
         } ) },
         { 0x76, new Opcode(0x76, "HALT", 1, 1, new Tick[] {
-            () => { },
+            () => { /* TODO: Pause and wait for interupt */ },
         } ) },
         { 0xCB, new Opcode(0xCB, "PREFIX CB", 1, 1, new Tick[] {
             () => { },

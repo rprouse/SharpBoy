@@ -5,9 +5,17 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParseOpCodes", "ParseOpCodes\ParseOpCodes.csproj", "{96472CD1-E700-420E-92A4-2ACCE0E5BFB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpBoy.Core", "SharpBoy.Core\SharpBoy.Core.csproj", "{B8983A47-37D0-4729-B132-45FFD01FF736}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpBoy.Core", "SharpBoy.Core\SharpBoy.Core.csproj", "{B8983A47-37D0-4729-B132-45FFD01FF736}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpBoy.Tests", "SharpBoy.Tests\SharpBoy.Tests.csproj", "{557919FB-BE46-4BE5-9477-9AC1BD07DB24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpBoy.Tests", "SharpBoy.Tests\SharpBoy.Tests.csproj", "{557919FB-BE46-4BE5-9477-9AC1BD07DB24}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0896A05E-C902-47CD-B0F5-8FEE6589BA64}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

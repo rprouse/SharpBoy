@@ -27,6 +27,12 @@ public class MemoryBlock
         _data = new byte[_end - _start + 1];
     }
 
+    public void Copy(byte[] data)
+    {
+        int len = Math.Min(data.Length, _data.Length);
+        Array.Copy(data, _data, len);
+    }
+
     /// <summary>
     /// Is this memory block in the address range for the given address?
     /// </summary>

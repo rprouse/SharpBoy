@@ -2,6 +2,10 @@ namespace SharpBoy.Core.Processor;
 
 public class Interupts
 {
+    public byte IE { get; set; }
+
+    public byte IF { get; set; }
+
     /// <summary>
     /// Disable Interrupts by clearing the IME flag.
     /// </summary>
