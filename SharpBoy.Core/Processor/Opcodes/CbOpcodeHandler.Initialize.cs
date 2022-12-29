@@ -162,30 +162,30 @@ public partial class CbOpcodeHandler
             () => { _reg.A = SRA(_reg.A); },
         } ) },
         { 0x30, new Opcode(0x30, "SWAP B", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.B = SWAP(_reg.B); },
         } ) },
         { 0x31, new Opcode(0x31, "SWAP C", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.C = SWAP(_reg.C); },
         } ) },
         { 0x32, new Opcode(0x32, "SWAP D", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.D = SWAP(_reg.D); },
         } ) },
         { 0x33, new Opcode(0x33, "SWAP E", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.E = SWAP(_reg.E); },
         } ) },
         { 0x34, new Opcode(0x34, "SWAP H", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.H = SWAP(_reg.H); },
         } ) },
         { 0x35, new Opcode(0x35, "SWAP L", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.L = SWAP(_reg.L); },
         } ) },
         { 0x36, new Opcode(0x36, "SWAP [HL]", 2, 4, new Tick[] {
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
-            () => { throw new NotImplementedException(); },
+            () => { },
+            () => { _operand = _mmu[_reg.HL]; },
+            () => { _mmu[_reg.HL] = SWAP(_operand); },
         } ) },
         { 0x37, new Opcode(0x37, "SWAP A", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.A = SWAP(_reg.A); },
         } ) },
         { 0x38, new Opcode(0x38, "SRL B", 2, 2, new Tick[] {
             () => { _reg.B = SRL(_reg.B); },

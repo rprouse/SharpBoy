@@ -62,4 +62,15 @@ public partial class CbOpcodeHandler : BaseOpcodeHandler
         _reg.FlagC = (value & 1) == 1;
         return result;
     }
+
+    // Swap the upper 4 bits in register r8 and the lower 4 ones.
+    private byte SWAP(byte value)
+    {
+        byte result = (byte)((value >> 4) | (value << 4));
+        _reg.FlagZ = result == 0;
+        _reg.FlagN = false;
+        _reg.FlagH = false;
+        _reg.FlagC = false;
+        return result;
+    }
 }
