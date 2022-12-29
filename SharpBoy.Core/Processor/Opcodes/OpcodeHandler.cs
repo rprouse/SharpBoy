@@ -1,3 +1,4 @@
+using System;
 using SharpBoy.Core.Graphics;
 using SharpBoy.Core.Memory;
 using SharpBoy.Core.Utilities;
@@ -143,4 +144,25 @@ public partial class OpcodeHandler : BaseOpcodeHandler
             () => { _mmu[--_reg.SP] = _reg.PC.Lsb(); },
             () => { _reg.PC = address; }
         };
+
+    private void SBC(byte value)
+    {
+        int carry = _reg.FlagC ? 1 : 0;
+        int result = _reg.A - value - carry;
+        _reg.FlagZ = result == 0;
+        _reg.FlagN = true;
+        _reg.FlagH = ((value + carry) & 0x0F) > (_reg.A & 0x0F);
+        _reg.FlagC = value + carry > _reg.A;
+        _reg.A = (byte)result;
+    }
+
+    private void SUB(byte value)
+    {
+        int result = _reg.A - value;
+        _reg.FlagZ = result == 0;
+        _reg.FlagN = true;
+        _reg.FlagH = (value & 0x0F) > (_reg.A & 0x0F);
+        _reg.FlagC = value > _reg.A;
+        _reg.A = (byte)result;
+    }
 }

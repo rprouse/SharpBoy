@@ -410,52 +410,52 @@ public partial class OpcodeHandler
             () => { ADC(_reg.A); },
         } ) },
         { 0x90, new Opcode(0x90, "SUB A,B", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { SUB(_reg.B); },
         } ) },
         { 0x91, new Opcode(0x91, "SUB A,C", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { SUB(_reg.C); },
         } ) },
         { 0x92, new Opcode(0x92, "SUB A,D", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { SUB(_reg.D); },
         } ) },
         { 0x93, new Opcode(0x93, "SUB A,E", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { SUB(_reg.E); },
         } ) },
         { 0x94, new Opcode(0x94, "SUB A,H", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { SUB(_reg.H); },
         } ) },
         { 0x95, new Opcode(0x95, "SUB A,L", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { SUB(_reg.L); },
         } ) },
         { 0x96, new Opcode(0x96, "SUB A,[HL]", 1, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { SUB(_mmu[_reg.HL]); },
         } ) },
         { 0x97, new Opcode(0x97, "SUB A,A", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { SUB(_reg.A); },
         } ) },
         { 0x98, new Opcode(0x98, "SBC A,B", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { SBC(_reg.B); },
         } ) },
         { 0x99, new Opcode(0x99, "SBC A,C", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { SBC(_reg.C); },
         } ) },
         { 0x9A, new Opcode(0x9A, "SBC A,D", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { SBC(_reg.D); },
         } ) },
         { 0x9B, new Opcode(0x9B, "SBC A,E", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { SBC(_reg.E); },
         } ) },
         { 0x9C, new Opcode(0x9C, "SBC A,H", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { SBC(_reg.H); },
         } ) },
         { 0x9D, new Opcode(0x9D, "SBC A,L", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { SBC(_reg.L); },
         } ) },
         { 0x9E, new Opcode(0x9E, "SBC A,[HL]", 1, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { SBC(_mmu[_reg.HL]); },
         } ) },
         { 0x9F, new Opcode(0x9F, "SBC A,A", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { SBC(_reg.A); },
         } ) },
         { 0xA0, new Opcode(0xA0, "AND B", 1, 1, new Tick[] {
             () => { AND(_reg.B); },
@@ -560,10 +560,10 @@ public partial class OpcodeHandler
             () => { ADC(NextByte()); },
         } ) },
         { 0xD6, new Opcode(0xD6, "SUB A,${0:X2}", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { SUB(_mmu[_reg.PC++]); },
         } ) },
         { 0xDE, new Opcode(0xDE, "SBC A,${0:X2}", 2, 2, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { SBC(_mmu[_reg.PC++]); },
         } ) },
         { 0xE6, new Opcode(0xE6, "AND ${0:X2}", 2, 2, new Tick[] {
             () => { AND(_mmu[_reg.PC]); },
