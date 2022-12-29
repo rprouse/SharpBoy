@@ -350,7 +350,7 @@ public partial class OpcodeHandler
             () => { _mmu[_reg.HL] = _operand; },
         } ) },
         { 0x37, new Opcode(0x37, "SCF", 1, 1, new Tick[] {
-            () => { throw new NotImplementedException(); },
+            () => { _reg.FlagN = false; _reg.FlagH = false; _reg.FlagC = true; },
         } ) },
         { 0x3C, new Opcode(0x3C, "INC A", 1, 1, new Tick[] {
             () => { _reg.A = INC(_reg.A); },
