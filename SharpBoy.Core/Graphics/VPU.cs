@@ -13,4 +13,7 @@ public class VPU
     public byte OBP1 { get; set; }
     public byte WY { get; set; }
     public byte WX { get; set; }
+    public void Tick()
+    {
+    }
 }

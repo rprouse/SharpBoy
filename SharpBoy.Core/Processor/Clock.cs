@@ -6,4 +6,7 @@ public class Clock
     public byte TIMA { get; set; }
     public byte TMA { get; set; }
     public byte TAC { get; set; }
+    public void Tick()
+    {
+    }
 }

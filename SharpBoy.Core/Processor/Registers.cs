@@ -1,6 +1,6 @@
 namespace SharpBoy.Core.Processor;
 
-public partial class Registers
+public class Registers
 {
     public byte A { get; set; }
     public byte F { get; set; }
