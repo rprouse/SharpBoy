@@ -1,3 +1,5 @@
+using SharpBoy.Core.Memory;
+
 namespace SharpBoy.Core.Processor;
 
 public enum InteruptType
@@ -13,7 +15,8 @@ public enum InteruptType
 public class Interupts
 {
     // Interupt Master Enable Register, it's a master switch for all interruptions
-    public bool IME;
+    // TODO: Switch to the bits in 0xFFFF?
+    public bool IME { get; set; }
 
     // Interupt Registers
     // IE = When bits are set, the corresponding interrupt can be triggered
@@ -27,11 +30,17 @@ public class Interupts
     // 3   Serial Link 
     // 4   Joypad 
 
-    // 0xFFFF
-    public byte IE { get; set; }
+    public byte IE
+    {
+        get => _mmu[0xFFFF];
+        set => _mmu[0xFFFF] = value;
+    }
 
-    // 0xFF0F
-    public byte IF { get; set; }
+    public byte IF
+    {
+        get => _mmu[0xFF0F];
+        set => _mmu[0xFF0F] = value;
+    }
 
     // ISR addresses
     public word[] ResetVectors { get; } = new word[] {
@@ -43,6 +52,12 @@ public class Interupts
          };
 
     private bool _pendingEnable = false;
+    private readonly MMU _mmu;
+
+    public Interupts(MMU mmu)
+    {
+        _mmu = mmu;
+    }
 
     public void OnInstructionFinished()
     {

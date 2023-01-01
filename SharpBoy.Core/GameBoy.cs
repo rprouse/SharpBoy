@@ -1,14 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SharpBoy.Core.Graphics;
 using SharpBoy.Core.Input;
 using SharpBoy.Core.Memory;
-using SharpBoy.Core.Serial;
-using System.Xml.Linq;
 using SharpBoy.Core.Processor;
+using SharpBoy.Core.Serial;
 
 namespace SharpBoy.Core;
 
@@ -30,22 +24,21 @@ public class GameBoy
     // constructor
     public GameBoy()
     {
-        _int = new Interupts();
-        _clock = new Clock();
-        _vpu = new VPU();
-        _joypad = new Joypad();
-        _dma = new Dma();
-        _serial = new SerialLink();
-        _mmu = new MMU(_clock, _int, _dma, _vpu, _joypad, _serial);
+        _mmu = new MMU();
 
         // Load before the CPU so the CPU can set the PC
         // Based on whether or not the boot rom is loaded
         _mmu.LoadBootRom(BootRom);
         _mmu.LoadCartridge(Cartridge);
 
-        _cpu = new CPU(_clock, _int, _vpu, _mmu);
+        _joypad = new Joypad(_mmu);
+        _dma = new Dma(_mmu);
+        _serial = new SerialLink(_mmu);
+        _clock = new Clock(_mmu);
+        _int = new Interupts(_mmu);
+        _vpu = new VPU(_mmu);
 
-        //dma.SetMMU(mmu);
+        _cpu = new CPU(_clock, _int, _vpu, _mmu);
     }
 
     public int Tick()
