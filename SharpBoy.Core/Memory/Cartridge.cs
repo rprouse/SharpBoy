@@ -37,7 +37,7 @@ public class Cartridge
         
         MBC = GetMbc();
 
-        if (MBC != BankType.MBC1) throw new ArgumentException($"Unsupported bank type {MBC}");
+        if (MBC != BankType.None) throw new ArgumentException($"Unsupported bank type {MBC}");
     }
 
     private BankType GetMbc() =>

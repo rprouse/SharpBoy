@@ -1,4 +1,3 @@
-using System.Net;
 using SharpBoy.Core.Graphics;
 using SharpBoy.Core.Input;
 using SharpBoy.Core.Processor;
@@ -41,7 +40,7 @@ public class MMU
     private readonly Joypad _joypad;
     private readonly SerialLink _serial;
 
-    private bool _bootRomBankedIn = false;
+    public bool BootRomBankedIn => _io[0xFF50] == 0x00;
 
     public MMU(Clock clock, Interupts interupts, Dma dma, VPU vpu, Joypad joypad, SerialLink serial)
     {
@@ -59,43 +58,45 @@ public class MMU
         _io      = new MemoryBlock(0xFF00, 0xFF7F);
         _hram    = new MemoryBlock(0xFF80, 0xFFFE);
 
-        Write(0xFF00, 0xCF);  // JOYP
-        Write(0xFF02, 0x7E);  // SC
-        Write(0xFF04, 0xAB);  // DIV
-        Write(0xFF08, 0xF8);  // TAC 
-        Write(0xFF0F, 0xE1);  // IF 
+        // Initialize memory
+        this[0xFF00] = 0xCF;  // JOYP
+        this[0xFF02] = 0x7E;  // SC
+        this[0xFF04] = 0xAB;  // DIV
+        this[0xFF08] = 0xF8;  // TAC 
+        this[0xFF0F] = 0xE1;  // IF 
 
         // Sound 1
-        Write(0xFF10, 0x80);  // ENT1
-        Write(0xFF11, 0xBF);  // LEN1
-        Write(0xFF12, 0xF3);  // ENV1
-        Write(0xFF13, 0xC1);  // FRQ1
-        Write(0xFF14, 0xBF);  // KIK1
+        this[0xFF10] = 0x80;  // ENT1
+        this[0xFF11] = 0xBF;  // LEN1
+        this[0xFF12] = 0xF3;  // ENV1
+        this[0xFF13] = 0xC1;  // FRQ1
+        this[0xFF14] = 0xBF;  // KIK1
 
-        Write(0xFF15, 0xFF);  // N/A
-        Write(0xFF16, 0x3F);  // LEN2
-        Write(0xFF19, 0xB8);  // KIK2
-        Write(0xFF1A, 0x7F);
-        Write(0xFF1B, 0xFF);
-        Write(0xFF1C, 0x9F);
-        Write(0xFF1E, 0xBF);
-        Write(0xFF20, 0xFF);
-        Write(0xFF23, 0xBF);
-        Write(0xFF24, 0x77);
-        Write(0xFF25, 0xF3);
-        Write(0xFF26, 0xF1);
+        this[0xFF15] = 0xFF;  // N/A
+        this[0xFF16] = 0x3F;  // LEN2
+        this[0xFF19] = 0xB8;  // KIK2
+        this[0xFF1A] = 0x7F;
+        this[0xFF1B] = 0xFF;
+        this[0xFF1C] = 0x9F;
+        this[0xFF1E] = 0xBF;
+        this[0xFF20] = 0xFF;
+        this[0xFF23] = 0xBF;
+        this[0xFF24] = 0x77;
+        this[0xFF25] = 0xF3;
+        this[0xFF26] = 0xF1;
 
         // graphics
-        Write(0xFF40, 0x91);  // LCDC
-        Write(0xFF41, 0x85);  // STAT
-        Write(0xFF46, 0xFF);  // DMA
-        Write(0xFF47, 0xFC);  // BGP
-        Write(0xFF48, 0xFF);  // OBJ0
-        Write(0xFF49, 0xFF);  // OBJ1
+        this[0xFF40] = 0x91;  // LCDC
+        this[0xFF41] = 0x85;  // STAT
+        this[0xFF46] = 0xFF;  // DMA
+        this[0xFF47] = 0xFC;  // BGP
+        this[0xFF48] = 0xFF;  // OBJ0
+        this[0xFF49] = 0xFF;  // OBJ1
 
-        Write(0xFF70, 0xFF);  // SVBK
-        Write(0xFF4F, 0xFF);  // VBK
-        Write(0xFF4D, 0xFF);  // KEY1
+        this[0xFF70] = 0xFF;  // SVBK
+        this[0xFF4F] = 0xFF;  // VBK
+        this[0xFF4D] = 0xFF;  // KEY1
+        this[0xFF50] = 0x01;  // Boot Rom Disabled
     }
 
     public bool LoadBootRom(string filename)
@@ -103,7 +104,7 @@ public class MMU
         if (!File.Exists(filename)) return false;
         byte[] data = File.ReadAllBytes(filename);
         _bootRom.Copy(data);
-        _bootRomBankedIn = true;
+        Write(0xFF50, 0x00);  // Boot Rom Enabled
         return true;
     }
 
@@ -123,7 +124,7 @@ public class MMU
 
     private byte Read(int address)
     {
-        if (_bootRomBankedIn && address <= 0x00FF) return _bootRom[address];
+        if (BootRomBankedIn && address <= 0x00FF) return _bootRom[address];
         // Cartridge memory unless the boot rom is still loaded
         else if (address < 0x8000) return _cartridge[address];
         // ECHO ram
@@ -134,6 +135,8 @@ public class MMU
         else if (_oam.HandlesAddress(address)) return _oam[address];
         else if (_hram.HandlesAddress(address)) return _hram[address];
 
+        // TODO: Switch this to use memory. The registers should point
+        // to the memory addresses, not the other way around
         // IO Registers
         return address switch
         {
@@ -169,7 +172,7 @@ public class MMU
 
     private void Write(int address, byte data)
     {
-        if (_bootRomBankedIn && address <= 0xFF) _bootRom[address] = data;
+        if (BootRomBankedIn && address <= 0xFF) _bootRom[address] = data;
         // Cartridge memory unless the boot rom is still loaded
         else if (address < 0x8000) _cartridge[address] = data;
         // ECHO ram

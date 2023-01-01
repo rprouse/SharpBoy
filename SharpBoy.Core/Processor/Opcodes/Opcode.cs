@@ -19,4 +19,6 @@ public class Opcode
         Cycles = cycles;
         Ticks = ticks;
     }
+
+    public override string ToString() => Name;
 }

@@ -37,15 +37,18 @@ public class GameBoy
         _dma = new Dma();
         _serial = new SerialLink();
         _mmu = new MMU(_clock, _int, _dma, _vpu, _joypad, _serial);
+
+        // Load before the CPU so the CPU can set the PC
+        // Based on whether or not the boot rom is loaded
+        _mmu.LoadBootRom(BootRom);
+        _mmu.LoadCartridge(Cartridge);
+
         _cpu = new CPU(_clock, _int, _vpu, _mmu);
 
         //dma.SetMMU(mmu);
-
-        _mmu.LoadBootRom(BootRom);
-        _mmu.LoadCartridge(Cartridge);
     }
 
-    public int Step()
+    public int Tick()
     {
         _clock.Tick();
         _cpu.Tick();

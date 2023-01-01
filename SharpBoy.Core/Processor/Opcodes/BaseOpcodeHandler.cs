@@ -1,4 +1,4 @@
-﻿using SharpBoy.Core.Graphics;
+using SharpBoy.Core.Graphics;
 using SharpBoy.Core.Memory;
 
 namespace SharpBoy.Core.Processor.Opcodes;
@@ -22,6 +22,22 @@ public abstract class BaseOpcodeHandler
     }
 
     protected abstract Dictionary<byte, Opcode> Initialize();
+
+    public virtual Opcode FetchInstruction()
+    {
+        byte value = NextByte();
+        if (_opcodes.ContainsKey(value))
+        {
+            return _opcodes[value];
+        }
+        throw new NotImplementedException($"Opcode 0x{value:X2} does not exist");
+    }
+
+    /// <summary>
+    /// Reads the next byte from memory and increments PC
+    /// </summary>
+    /// <returns></returns>
+    protected byte NextByte() => _mmu[_reg.PC++];
 
     protected byte RL(byte value)
     {

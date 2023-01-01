@@ -12,30 +12,30 @@ public partial class OpcodeHandler
             () => { _reg.PC = (word)(_reg.PC + (sbyte)_operand); },
         } ) },
         { 0x20, new Opcode(0x20, "JR NZ,{0}", 2, 3, new Tick[] {
-            () => { _operand = NextByte(); _stop = _reg.FlagZ; },
+            () => { _operand = NextByte(); Stop = _reg.FlagZ; },
             () => { _reg.PC = (word)(_reg.PC + (sbyte)_operand); },
         } ) },
         { 0x28, new Opcode(0x28, "JR Z,{0}", 2, 3, new Tick[] {
-            () => { _operand = NextByte(); _stop = !_reg.FlagZ; },
+            () => { _operand = NextByte(); Stop = !_reg.FlagZ; },
             () => { _reg.PC = (word)(_reg.PC + (sbyte)_operand); },
         } ) },
         { 0x30, new Opcode(0x30, "JR NC,{0}", 2, 3, new Tick[] {
-            () => { _operand = NextByte(); _stop = _reg.FlagC; },
+            () => { _operand = NextByte(); Stop = _reg.FlagC; },
             () => { _reg.PC = (word)(_reg.PC + (sbyte)_operand); },
         } ) },
         { 0x38, new Opcode(0x38, "JR C,{0}", 2, 3, new Tick[] {
-            () => { _operand = NextByte(); _stop = !_reg.FlagC; },
+            () => { _operand = NextByte(); Stop = !_reg.FlagC; },
             () => { _reg.PC = (word)(_reg.PC + (sbyte)_operand); },
         } ) },
         { 0xC0, new Opcode(0xC0, "RET NZ", 1, 5, new Tick[] {
-            () => { _stop = _reg.FlagZ; },
+            () => { Stop = _reg.FlagZ; },
             () => { _lsb = _mmu[_reg.SP++]; },
             () => { _msb = _mmu[_reg.SP++]; },
             () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
         { 0xC2, new Opcode(0xC2, "JP NZ,${0:X4}", 3, 4, new Tick[] {
             () => { _lsb = NextByte(); },
-            () => { _msb = NextByte(); _stop = _reg.FlagZ; },
+            () => { _msb = NextByte(); Stop = _reg.FlagZ; },
             () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
         { 0xC3, new Opcode(0xC3, "JP ${0:X4}", 3, 4, new Tick[] {
@@ -45,14 +45,14 @@ public partial class OpcodeHandler
         } ) },
         { 0xC4, new Opcode(0xC4, "CALL NZ,${0:X4}", 3, 6, new Tick[] {
             () => { _lsb = NextByte(); },
-            () => { _msb = NextByte(); _stop = _reg.FlagZ; },
+            () => { _msb = NextByte(); Stop = _reg.FlagZ; },
             () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Msb(); },
             () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Lsb(); },
             () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
         { 0xC7, new Opcode(0xC7, "RST 00h", 1, 4, RST(0x00) ) },
         { 0xC8, new Opcode(0xC8, "RET Z", 1, 5, new Tick[] {
-            () => { _stop = !_reg.FlagZ; },
+            () => { Stop = !_reg.FlagZ; },
             () => { _lsb = _mmu[_reg.SP++]; },
             () => { _msb = _mmu[_reg.SP++]; },
             () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
@@ -64,12 +64,12 @@ public partial class OpcodeHandler
         } ) },
         { 0xCA, new Opcode(0xCA, "JP Z,${0:X4}", 3, 4, new Tick[] {
             () => { _lsb = NextByte(); },
-            () => { _msb = NextByte(); _stop = !_reg.FlagZ; },
+            () => { _msb = NextByte(); Stop = !_reg.FlagZ; },
             () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
         { 0xCC, new Opcode(0xCC, "CALL Z,${0:X4}", 3, 6, new Tick[] {
             () => { _lsb = NextByte(); },
-            () => { _msb = NextByte(); _stop = !_reg.FlagZ; },
+            () => { _msb = NextByte(); Stop = !_reg.FlagZ; },
             () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Msb(); },
             () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Lsb(); },
             () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
@@ -83,26 +83,26 @@ public partial class OpcodeHandler
         } ) },
         { 0xCF, new Opcode(0xCF, "RST 08h", 1, 4, RST(0x08) ) },
         { 0xD0, new Opcode(0xD0, "RET NC", 1, 5, new Tick[] {
-            () => { _stop = _reg.FlagC; },
+            () => { Stop = _reg.FlagC; },
             () => { _lsb = _mmu[_reg.SP++]; },
             () => { _msb = _mmu[_reg.SP++]; },
             () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
         { 0xD2, new Opcode(0xD2, "JP NC,${0:X4}", 3, 4, new Tick[] {
             () => { _lsb = NextByte(); },
-            () => { _msb = NextByte(); _stop = _reg.FlagC; },
+            () => { _msb = NextByte(); Stop = _reg.FlagC; },
             () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
         { 0xD4, new Opcode(0xD4, "CALL NC,${0:X4}", 3, 6, new Tick[] {
             () => { _lsb = NextByte(); },
-            () => { _msb = NextByte(); _stop = _reg.FlagC; },
+            () => { _msb = NextByte(); Stop = _reg.FlagC; },
             () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Msb(); },
             () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Lsb(); },
             () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
         { 0xD7, new Opcode(0xD7, "RST 10h", 1, 4, RST(0x10) ) },
         { 0xD8, new Opcode(0xD8, "RET C", 1, 5, new Tick[] {
-            () => { _stop = !_reg.FlagC; },
+            () => { Stop = !_reg.FlagC; },
             () => { _lsb = _mmu[_reg.SP++]; },
             () => { _msb = _mmu[_reg.SP++]; },
             () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
@@ -114,12 +114,12 @@ public partial class OpcodeHandler
         } ) },
         { 0xDA, new Opcode(0xDA, "JP C,${0:X4}", 3, 4, new Tick[] {
             () => { _lsb = NextByte(); },
-            () => { _msb = NextByte(); _stop = !_reg.FlagC; },
+            () => { _msb = NextByte(); Stop = !_reg.FlagC; },
             () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
         } ) },
         { 0xDC, new Opcode(0xDC, "CALL C,${0:X4}", 3, 6, new Tick[] {
             () => { _lsb = NextByte(); },
-            () => { _msb = NextByte(); _stop = !_reg.FlagC; },
+            () => { _msb = NextByte(); Stop = !_reg.FlagC; },
             () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Msb(); },
             () => { _reg.SP--; _mmu[_reg.SP] = _reg.PC.Lsb(); },
             () => { _reg.PC = BitUtils.ToWord(_msb, _lsb); },
@@ -560,19 +560,19 @@ public partial class OpcodeHandler
             () => { ADC(NextByte()); },
         } ) },
         { 0xD6, new Opcode(0xD6, "SUB A,${0:X2}", 2, 2, new Tick[] {
-            () => { SUB(_mmu[_reg.PC++]); },
+            () => { SUB(NextByte()); },
         } ) },
         { 0xDE, new Opcode(0xDE, "SBC A,${0:X2}", 2, 2, new Tick[] {
-            () => { SBC(_mmu[_reg.PC++]); },
+            () => { SBC(NextByte()); },
         } ) },
         { 0xE6, new Opcode(0xE6, "AND ${0:X2}", 2, 2, new Tick[] {
-            () => { AND(_mmu[_reg.PC]); },
+            () => { AND(NextByte()); },
         } ) },
         { 0xEE, new Opcode(0xEE, "XOR ${0:X2}", 2, 2, new Tick[] {
-            () => { XOR(_mmu[_reg.PC]); },
+            () => { XOR(NextByte()); },
         } ) },
         { 0xF6, new Opcode(0xF6, "OR ${0:X2}", 2, 2, new Tick[] {
-            () => { OR(_mmu[_reg.PC]); },
+            () => { OR(NextByte()); },
         } ) },
         { 0xFE, new Opcode(0xFE, "CP A,${0:X2}", 2, 2, new Tick[] {
             () => { CP(NextByte()); },

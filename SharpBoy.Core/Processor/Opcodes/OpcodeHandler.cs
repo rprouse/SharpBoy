@@ -12,16 +12,28 @@ public partial class OpcodeHandler : BaseOpcodeHandler
     private byte _msb;
     private byte _operand;
     private word _address;
-    private bool _stop;
-
-    public OpcodeHandler(Registers registers, MMU mmu, VPU vpu, Interupts interupts)
-        : base(registers, mmu, vpu, interupts) { }
 
     /// <summary>
-    /// Reads the next byte from memory and increments PC
+    /// For branch instructions that have a different
+    /// number of cycles, indicates to stop execution
+    /// early
     /// </summary>
-    /// <returns></returns>
-    private byte NextByte() => _mmu[_reg.PC++];
+    public bool Stop { get; private set; }
+
+    private readonly CbOpcodeHandler _cbOpcodeHandler;
+
+    public OpcodeHandler(Registers registers, MMU mmu, VPU vpu, Interupts interupts)
+        : base(registers, mmu, vpu, interupts) 
+    {
+        _cbOpcodeHandler = new CbOpcodeHandler(registers, mmu, vpu, interupts);
+    }
+
+    public override Opcode FetchInstruction()
+    {
+        Stop = false;
+        var opcode = base.FetchInstruction();
+        return opcode.Value == 0xCB ? _cbOpcodeHandler.FetchInstruction() : opcode;
+    }
 
     private void ADC(byte value)
     {
@@ -131,7 +143,7 @@ public partial class OpcodeHandler : BaseOpcodeHandler
 
     private void XOR(byte value)
     {
-        _reg.A = (byte)(_reg.A | value);
+        _reg.A = (byte)(_reg.A ^ value);
         _reg.FlagZ = _reg.A == 0;
         _reg.FlagN = false;
         _reg.FlagH = false;
